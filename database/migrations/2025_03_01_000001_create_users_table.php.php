@@ -13,12 +13,17 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('nombre');
+            $table->string('password');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->integer('puntos_de_debate')->default(0);
+            $table->unsignedBigInteger('rol_id');
+            $table->string('foto_perfil')->default('public/imagenes/perfil/default.jpg');
             $table->rememberToken();
             $table->timestamps();
+
+            $table->foreign('rol_id')->references('id')->on('roles');
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
