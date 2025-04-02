@@ -14,7 +14,7 @@ return new class extends Migration
             $table->unsignedBigInteger('usuario_id');
             $table->text('contenido');
             $table->enum('postura', ['A favor', 'Parcialmente a favor','Neutral','Parcialmente en contra','En contra']);
-
+            $table->timestamps();
             $table->foreign('debate_id')->references('id')->on('debates')->onDelete('cascade');
             $table->foreign('usuario_id')->references('id')->on('users')->onDelete('cascade');
         });

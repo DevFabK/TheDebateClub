@@ -19,11 +19,11 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->integer('puntos_de_debate')->default(0);
             $table->unsignedBigInteger('rol_id');
-            $table->string('foto_perfil')->default('public/imagenes/perfil/default.jpg');
+            $table->string('foto_perfil')->default('storage/imagenes/perfil/default.jpg'); 
             $table->rememberToken();
             $table->timestamps();
-
-            $table->foreign('rol_id')->references('id')->on('roles');
+        
+            $table->foreign('rol_id')->references('id')->on('roles')->onDelete('cascade'); 
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {

@@ -13,7 +13,7 @@ return new class extends Migration
             $table->unsignedBigInteger('tema_id');
             $table->string('titulo', 255);
             $table->text('descripcion');
-
+            $table->timestamps();
             $table->foreign('tema_id')->references('id')->on('temas_debates')->onDelete('cascade');
         });
     }
