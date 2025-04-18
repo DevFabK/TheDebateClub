@@ -9,8 +9,6 @@ class Debate extends Model
 {
     use HasFactory;
 
-    protected $table = 'debates';
-
     protected $fillable = ['tema_id', 'titulo', 'descripcion'];
 
     public function tema()
@@ -25,6 +23,6 @@ class Debate extends Model
 
     public function usuarios()
     {
-        return $this->belongsToMany(User::class, 'usuarios_debates', 'debate_id', 'usuario_id');
+        return $this->belongsToMany(User::class, 'debate_usuario', 'debate_id', 'usuario_id');
     }
 }

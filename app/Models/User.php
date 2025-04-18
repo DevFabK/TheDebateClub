@@ -13,14 +13,14 @@ class User extends Authenticatable
     protected $fillable = [
         'nombre',
         'email',
-        'contraseña',
+        'password',
         'foto_perfil',
         'puntos_de_debate',
         'rol_id',
     ];
 
     protected $hidden = [
-        'contraseña',
+        'password',
         'remember_token',
     ];
 
@@ -28,7 +28,7 @@ class User extends Authenticatable
     {
         return [
             'email_verified_at' => 'datetime',
-            'contraseña' => 'hashed',
+            'password' => 'hashed',
         ];
     }
 
@@ -52,6 +52,6 @@ class User extends Authenticatable
 
     public function debates()
     {
-        return $this->belongsToMany(Debate::class, 'usuarios_debates', 'usuario_id', 'debate_id');
+        return $this->belongsToMany(Debate::class, 'debate_usuario', 'usuario_id', 'debate_id');
     }
 }

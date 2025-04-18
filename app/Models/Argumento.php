@@ -9,8 +9,6 @@ class Argumento extends Model
 {
     use HasFactory;
 
-    protected $table = 'argumentos';
-
     protected $fillable = ['debate_id', 'usuario_id', 'contenido', 'postura'];
 
     public function debate()

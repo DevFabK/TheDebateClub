@@ -14,6 +14,8 @@ return new class extends Migration
             $table->unsignedBigInteger('usuario_id');
             $table->integer('puntuacion');
 
+            $table->unique(['argumento_id', 'usuario_id']);
+
             $table->foreign('argumento_id')->references('id')->on('argumentos')->onDelete('cascade');
             $table->foreign('usuario_id')->references('id')->on('users')->onDelete('cascade');
         });
