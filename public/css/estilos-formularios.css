@@ -1,3 +1,4 @@
+/* estilos-formularios.css */
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wdth,wght@50..200,200..900&display=swap');
 
@@ -49,15 +50,13 @@
 }
 
 .titulo {
-    font-family: "Bebas Neue";
-    position: relative; 
+    font-family: "Bebas Neue"; 
     text-align: center;
     font-size: 3rem;
     font-weight: bold;
     color: #000;
     border: 3px solid #000;
     background-color: #e9b50b;
-    width: 100%;
     box-shadow: 10px 10px 0 #000;
     padding: 15px;
     transform: rotate(-5deg);
@@ -68,8 +67,8 @@
 }
 
 .titulo:hover {
-    transform: rotate(5deg) scale(1.05); 
-    box-shadow: 25px 25px 0 -5px #000000, 25px 25px 0 0 #000;
+    transform: rotate(2deg); 
+    box-shadow: 25px 25px 0 -5px #000;
 }
 
 .sombra {
@@ -154,12 +153,25 @@
     text-transform: uppercase;
     font-size: 18px;
     font-family: 'Inconsolata';
+    text-decoration: none;
+    color: #000;
 }
 
 .boton__entrada__sombra:hover {
     background: #e9b50b;
     transform: translateZ(10px) translateX(-5px) translateY(-5px);
     box-shadow: 5px 5px 0 0 #000;
+}
+
+.otras-opciones {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.otras-opciones a {
+    text-decoration: none;
 }
 
 .errores{
@@ -179,7 +191,6 @@
     right: 0px; 
     font-size: 25px; 
 }
-
 
 .lista-errores{
     list-style-type: none;

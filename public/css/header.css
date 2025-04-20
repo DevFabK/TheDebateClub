@@ -1,0 +1,63 @@
+.header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    margin: 25px 25px 0px 25px;
+    gap: 20px;
+}
+
+.header-titulo {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #000;
+    border: 3px solid #000;
+    background-color: #e9b50b;
+    box-shadow: 10px 10px 0 #000;
+    padding: 15px;
+    display: inline-block;
+    transition: all 0.3s ease;
+    letter-spacing: 2px;
+    flex: 1; 
+    text-align: center;
+}
+
+.header-titulo:hover {
+    transform: rotate(2deg);
+    box-shadow: 15px 15px 0 -5px #000;
+}
+
+.menu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    padding: 20px;
+    border: 3px solid #000;
+    background-color: #e9b50b;
+    box-shadow: 10px 10px 0 #000;
+    transition: all 0.3s ease;
+    flex-grow: 0; 
+}
+
+.menu:hover {
+    transform: rotate(5deg);
+    box-shadow: 15px 15px 0 -5px #000;
+}
+
+.menu svg {
+    height: 32px;
+    width: 32px;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+a:visited,
+a:active {
+    text-decoration: none;
+}

@@ -22,7 +22,7 @@ class LoginController extends Controller
         // Validación con mensajes personalizados
         $request->validate([
             'nombre' => 'required|string',
-            'password' => 'required|string|min:8',
+            'password' => 'required|string|',
         ], [
             'nombre.required' => 'El nombre de usuario es obligatorio.',
             'password.required' => 'La contraseña es obligatoria.',
@@ -44,5 +44,18 @@ class LoginController extends Controller
         Auth::login($user);
 
         return redirect()->route('home'); // Redirigir a la página principal
+    }
+
+    // Función para entrar como invitado
+    public function entrarComoInvitado()
+    {
+        Auth::logout(); // Aseguramos que no haya un usuario autenticado
+        return redirect()->route('home'); // Redirigir a la home
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('login');
     }
 }

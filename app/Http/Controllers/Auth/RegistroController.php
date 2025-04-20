@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+
 
 class RegistroController extends Controller
 {
@@ -42,5 +44,13 @@ class RegistroController extends Controller
         ]);
 
         return redirect()->route('login')->with('success', 'Cuenta registrada correctamente.');
+    }
+
+    // Función para entrar como invitado
+    public function entrarComoInvitado()
+    {
+        // Similar al LoginController, simplemente redirigimos sin loguear a nadie
+        Auth::logout(); // Aseguramos que no haya un usuario autenticado
+        return redirect()->route('home'); // Redirigir a la home
     }
 }
