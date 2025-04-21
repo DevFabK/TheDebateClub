@@ -9,6 +9,7 @@
     <link href="{{ asset('css/footer.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/estilos-home.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/fondo-general.css') }}" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('css/layout-principal.css') }} ">
 
     @yield('styles') 
 
