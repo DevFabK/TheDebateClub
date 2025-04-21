@@ -12,28 +12,55 @@ class UsersSeeder extends Seeder
     {
         DB::table('users')->insert([
             [
-                'id' => 1,
-                'nombre' => 'Admin',
-                'email' => 'admin@admin.com',
+
+                'nombre' => 'Admin1',
+                'email' => 'admin1@admin.com',
                 'password' => Hash::make('Admin123'),
                 'puntos_de_debate' => 0,
                 'rol_id' => 1,
                 'foto_perfil' => 'storage/imagenes/perfil/default.jpg',
             ],
             [
-                'id' => 2, 
-                'nombre' => 'Moderador',
-                'email' => 'mod@mod.com',
+
+                'nombre' => 'Admin2',
+                'email' => 'admin2@admin.com',
+                'password' => Hash::make('Admin123'),
+                'puntos_de_debate' => 0,
+                'rol_id' => 1,
+                'foto_perfil' => 'storage/imagenes/perfil/default.jpg',
+            ],
+            [
+
+                'nombre' => 'Moderador1',
+                'email' => 'mod1@mod.com',
                 'password' => Hash::make('Moderador123'),
                 'puntos_de_debate' => 0,
                 'rol_id' => 2,
                 'foto_perfil' => 'storage/imagenes/perfil/default.jpg',
             ],
             [
-                'id' => 3, 
+
+                'nombre' => 'Moderador2',
+                'email' => 'mod2@mod.com',
+                'password' => Hash::make('Moderador123'),
+                'puntos_de_debate' => 0,
+                'rol_id' => 2,
+                'foto_perfil' => 'storage/imagenes/perfil/default.jpg',
+            ],
+            [
+
                 'nombre' => 'Usuario1',
                 'email' => 'user1@example.com',
                 'password' => Hash::make('Usuario123'),
+                'puntos_de_debate' => 10,
+                'rol_id' => 3,
+                'foto_perfil' => 'storage/imagenes/perfil/default.jpg',
+            ],
+            [
+
+                'nombre' => 'Test',
+                'email' => 'test@test.com',
+                'password' => Hash::make('test12345'),
                 'puntos_de_debate' => 10,
                 'rol_id' => 3,
                 'foto_perfil' => 'storage/imagenes/perfil/default.jpg',

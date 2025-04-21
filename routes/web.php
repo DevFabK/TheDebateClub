@@ -6,9 +6,8 @@ use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Auth;
 
 
-Route::get('/', function () {
-    return view('login');
-});
+Route::get('/', [LoginController::class, 'mostrarFormularioLogin']);
+
 
 // REGISTRO
 Route::get('/registro', [RegistroController::class, 'mostrarFormularioRegistro'])->name('registro');

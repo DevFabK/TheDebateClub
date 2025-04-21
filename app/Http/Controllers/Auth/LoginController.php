@@ -22,7 +22,7 @@ class LoginController extends Controller
         // Validación con mensajes personalizados
         $request->validate([
             'nombre' => 'required|string',
-            'password' => 'required|string|',
+            'password' => 'required|string|min:8',
         ], [
             'nombre.required' => 'El nombre de usuario es obligatorio.',
             'password.required' => 'La contraseña es obligatoria.',
