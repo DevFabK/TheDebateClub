@@ -3,15 +3,11 @@
 @section('title', 'Inicio')
 
 @section('content')
-    <div class="contenedor">
-        <div class="debate-del-dia">
-            <h2 class="titulo">Debate del dia</h2>
-        </div>
+<div class="contenedor">
+    <div class="debate-del-dia">
+        <h2 class="titulo">Debate del dia</h2>
     </div>
-    <br><br><br><br><br><br><br>
-    <br><br><br><br><br><br><br><br><br><br><br><br>
-    <br><br><br><br><br>
-    <br><br><br><br><br>
+</div>
 
 
 @endsection
