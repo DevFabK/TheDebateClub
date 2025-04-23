@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegistroController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 
 // PRIMERA PAGINA (LOGIN)
@@ -22,11 +23,10 @@ Route::get('/logout', function () {
     return redirect()->route('login'); // Redirigir a la página de login
 })->name('logout');
 
-// HOME
-Route::get('/home', function () {
-    return view('home');
-})->name('home');
+// MOSTRAR LOS TEMAS EN HOME
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
+// PERFIL
 Route::get('/perfil', function(){
     return view('perfil');
 })->name('perfil');

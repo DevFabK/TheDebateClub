@@ -9,6 +9,7 @@ class Tema extends Model
 {
     use HasFactory;
 
+    protected $table = 'temas_debates';
     protected $fillable = ['titulo', 'descripcion'];
 
     public function debates()

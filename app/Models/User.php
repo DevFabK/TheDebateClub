@@ -52,6 +52,6 @@ class User extends Authenticatable
 
     public function debates()
     {
-        return $this->belongsToMany(Debate::class, 'debate_usuario', 'usuario_id', 'debate_id');
+        return $this->hasMany(Debate::class, 'debate_usuario', 'usuario_id', 'debate_id');
     }
 }

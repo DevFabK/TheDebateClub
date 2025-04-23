@@ -9,6 +9,8 @@ class Puntuacion extends Model
 {
     use HasFactory;
 
+    protected $table = 'puntuaciones';
+
     protected $fillable = ['argumento_id', 'usuario_id', 'puntuacion'];
 
     public function argumento()
