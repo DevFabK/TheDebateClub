@@ -11,11 +11,6 @@
     margin-top: auto;
 }
 
-.footer:hover {
-    transform: rotate(-1deg);
-    box-shadow: 15px 15px 0 -5px #000;
-}
-
 .footer-main {
     display: flex;
     flex-direction: row;
