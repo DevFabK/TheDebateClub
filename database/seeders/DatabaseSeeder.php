@@ -15,7 +15,6 @@ class DatabaseSeeder extends Seeder
             DebatesSeeder::class,
             ArgumentosSeeder::class,
             PuntuacionesSeeder::class,
-            DebateUsuarioSeeder::class,
         ]);
     }
 }

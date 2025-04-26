@@ -13,11 +13,13 @@ class Puntuacion extends Model
 
     protected $fillable = ['argumento_id', 'usuario_id', 'puntuacion'];
 
+    // Una puntuación pertenece a un argumento
     public function argumento()
     {
         return $this->belongsTo(Argumento::class, 'argumento_id');
     }
 
+    // Una puntuación pertenece a un usuario (el que la ha puesto)
     public function usuario()
     {
         return $this->belongsTo(User::class, 'usuario_id');

@@ -12,6 +12,9 @@ return new class extends Migration
             $table->id();
             $table->string('titulo', 255);
             $table->text('descripcion');
+            $table->unsignedBigInteger('usuario_id')->nullable();
+
+            $table->foreign('usuario_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
