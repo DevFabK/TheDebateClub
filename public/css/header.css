@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Limelight&display=swap');
+
 
 .header {
     display: flex;
@@ -9,8 +11,9 @@
 }
 
 .header-titulo {
-    font-family: "Bebas Neue", sans-serif;
+    font-family: "LimeLight", sans-serif;
     font-size: 3rem;
+    letter-spacing: 5px;
     font-weight: bold;
     color: #000;
     border: 3px solid #000;
