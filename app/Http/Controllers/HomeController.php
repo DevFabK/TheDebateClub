@@ -3,22 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\Models\Tema;
+use App\Http\Controllers\DebateController;
 
 class HomeController extends Controller
 {
-    public function index()
+    public function index(DebateController $debateController)
     {
-        // Verifica si el usuario está autenticado
-        $isAuthenticated = Auth::check();
+        // Obtener los temas
+        $temasArray = Tema::all();
 
-        $temas = Tema::all();
-        // Devuelve la vista de la home con la variable 'isAuthenticated'
+        // Obtener los debates destacados a través de DebateController
+        $debatesDestacados = $debateController->obtenerDebatesDestacados();
 
-        return view('home', [
-            'temasArray' => $temas,
-            'isAuthenticated' => $isAuthenticated,
-        ]);
+        // Pasar datos a la vista
+        return view('home', compact('temasArray', 'debatesDestacados'));
     }
 }

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegistroController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\BuscadorTemasController;
 use Illuminate\Support\Facades\Auth;
 
 // PRIMERA PAGINA (LOGIN)
@@ -30,3 +31,9 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/perfil', function(){
     return view('perfil');
 })->name('perfil');
+
+// Ruta para AJAX de búsqueda
+Route::post('/buscar-temas', [BuscadorTemasController::class, 'buscar']);
+
+// Ruta para redirigir al tema
+Route::get('/tema/{id}', [BuscadorTemasController::class, 'irAlTema'])->name('tema');

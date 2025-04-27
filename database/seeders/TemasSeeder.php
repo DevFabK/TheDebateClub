@@ -20,6 +20,8 @@ class TemasSeeder extends Seeder
             ['titulo' => 'La inteligencia artificial y la ética', 'descripcion' => '¿Debe una IA tener derechos?'],
             ['titulo' => 'La banalidad del contenido viral', 'descripcion' => '¿Por qué lo superficial domina los medios?'],
             ['titulo' => 'La educación como motor de cambio', 'descripcion' => '¿Qué pasa si educamos para cuestionar y no solo para obedecer?'],
+            ['titulo' => 'Cambio climático', 'descripcion' => '¿Estamos a tiempo de salvar el planeta?'],
+            ['titulo' => 'Economía digital', 'descripcion' => 'El futuro del dinero y la desaparición del efectivo.'],
         ]);
     }
 }
