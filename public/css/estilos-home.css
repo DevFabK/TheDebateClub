@@ -32,7 +32,21 @@
     gap: 20px;
     justify-content: center;
     align-items: center;
-    padding: 10px;
+    padding: 25px 0;
+    border-radius: 3px;
+    margin-top: 0.5rem;
+}
+
+.tema-buscado{
+    text-align: center;
+    width: 90%;
+    border-bottom: 2px solid #555;
+    transition: border-bottom 0.3s ease;
+}
+
+.tema-buscado:hover {
+    border-bottom: 2px solid #e9b50b;
+
 }
 
 .top {
