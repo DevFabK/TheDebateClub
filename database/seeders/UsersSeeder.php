@@ -17,7 +17,6 @@ class UsersSeeder extends Seeder
                 'password' => Hash::make('Admin123'),
                 'puntos_de_debate' => 0,
                 'rol_id' => 1,
-                'foto_perfil' => 'storage/imagenes/perfil/default.jpg',
             ],
             [
                 'nombre' => 'Admin2',
@@ -25,7 +24,6 @@ class UsersSeeder extends Seeder
                 'password' => Hash::make('Admin123'),
                 'puntos_de_debate' => 0,
                 'rol_id' => 1,
-                'foto_perfil' => 'storage/imagenes/perfil/default.jpg',
             ],
             [
                 'nombre' => 'Moderador1',
@@ -33,7 +31,6 @@ class UsersSeeder extends Seeder
                 'password' => Hash::make('Moderador123'),
                 'puntos_de_debate' => 0,
                 'rol_id' => 2,
-                'foto_perfil' => 'storage/imagenes/perfil/default.jpg',
             ],
             [
                 'nombre' => 'Moderador2',
@@ -41,7 +38,6 @@ class UsersSeeder extends Seeder
                 'password' => Hash::make('Moderador123'),
                 'puntos_de_debate' => 0,
                 'rol_id' => 2,
-                'foto_perfil' => 'storage/imagenes/perfil/default.jpg',
             ],
             [
                 'nombre' => 'Usuario1',
@@ -49,7 +45,6 @@ class UsersSeeder extends Seeder
                 'password' => Hash::make('Usuario123'),
                 'puntos_de_debate' => 10,
                 'rol_id' => 3,
-                'foto_perfil' => 'storage/imagenes/perfil/default.jpg',
             ],
             [
                 'nombre' => 'Test',
@@ -57,7 +52,6 @@ class UsersSeeder extends Seeder
                 'password' => Hash::make('test12345'),
                 'puntos_de_debate' => 10,
                 'rol_id' => 3,
-                'foto_perfil' => 'storage/imagenes/perfil/default.jpg',
             ],
             [
                 'nombre' => 'Usuario2',
@@ -65,7 +59,6 @@ class UsersSeeder extends Seeder
                 'password' => Hash::make('Usuario123'),
                 'puntos_de_debate' => 5,
                 'rol_id' => 3,
-                'foto_perfil' => 'storage/imagenes/perfil/default.jpg',
             ],
             [
                 'nombre' => 'Usuario3',
@@ -73,7 +66,6 @@ class UsersSeeder extends Seeder
                 'password' => Hash::make('Usuario123'),
                 'puntos_de_debate' => 8,
                 'rol_id' => 3,
-                'foto_perfil' => 'storage/imagenes/perfil/default.jpg',
             ],
         ]);
     }
