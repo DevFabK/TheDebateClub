@@ -1,0 +1,99 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+.contenido {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin: 15px;
+}
+
+.contenido-perfil {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    background-color: #dadada65;
+    border: 3px solid #000;
+}
+
+.info-personal {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.informacion-personal p, .informacion-personal h3 {
+    margin: 0;
+}
+
+.foto-perfil {
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    width: 75px;
+    outline: 2px solid #000;
+}
+
+.puntos {
+    font-weight: bold;
+}
+
+.participaciones {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr;
+    flex: 1; 
+}
+
+.participacion, .mejor-argumento {
+    position: relative;
+    margin-top: 2rem;
+    background-color: #f9f9f9;
+    width: fit-content;
+    height: fit-content;
+    border: 2px solid;
+    padding: 5px;
+}
+
+.mejor-argumento {
+    padding: 10px;
+}
+
+.participacion-list {
+    list-style-type: none;
+    padding: 0 5px;
+}
+
+.participacion-list li {
+    margin: 5px;
+    border-bottom: 2px solid #0a3fe9;
+}
+
+.participacion::before, .mejor-argumento::before {
+    content: attr(data-label);
+    color: white;
+    position: absolute;
+    top: -30px;
+    left: 10px;
+    background: #325ce9;
+    font-weight: bold;
+    padding: 5px 10px;
+    font-size: 16px;
+    transform: rotate(-2deg);
+    border: 2px solid #000;
+    border-radius: 3px;
+    width: fit-content;
+    height: fit-content;
+}
