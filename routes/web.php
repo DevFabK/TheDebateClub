@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BuscadorTemasController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\PublicarController;
 
 // PRIMERA PAGINA (LOGIN)
 Route::get('/', [LoginController::class, 'mostrarFormularioLogin']);
@@ -39,3 +40,5 @@ Route::post('/buscar-temas', [BuscadorTemasController::class, 'buscar']);
 // Ruta para redirigir al tema
 Route::get('/tema/{id}', [BuscadorTemasController::class, 'irAlTema'])->name('tema');
 
+// Publicar
+Route::get('/crear', [PublicarController::class, 'mostrarPanelCrear'])->name('crear');
