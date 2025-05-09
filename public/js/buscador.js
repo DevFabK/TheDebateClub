@@ -4,7 +4,7 @@ $(document).ready(function () {
 
         if (query.length > 1) {
             $.ajax({
-                url: '/buscar-temas', 
+                url: 'buscar-temas', 
                 method: 'POST',
                 data: {
                     _token: $('meta[name="csrf-token"]').attr('content'),
