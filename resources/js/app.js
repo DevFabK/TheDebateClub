@@ -4,7 +4,7 @@ import 'easymde/dist/easymde.min.css';
 import '../../public/css/estilos-crear.css';
 
 document.addEventListener('DOMContentLoaded', () => {
-    const textarea = document.getElementById('argumento-usuario');
+    const textarea = document.getElementById('texto-usuario');
     if (textarea) {
         new EasyMDE({
             element: textarea,

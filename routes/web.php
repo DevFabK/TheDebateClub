@@ -41,4 +41,9 @@ Route::post('/buscar-temas', [BuscadorTemasController::class, 'buscar']);
 Route::get('/tema/{id}', [BuscadorTemasController::class, 'irAlTema'])->name('tema');
 
 // Publicar
-Route::get('/crear', [PublicarController::class, 'mostrarPanelCrear'])->name('crear');
+Route::get('/crear', [PublicarController::class, 'mostrarPanelCrear'])->middleware('auth')->name('crear');
+Route::post('/crear', [PublicarController::class, 'post'])->middleware('auth')->name('crear.post');
+
+Route::get('/temas', function () {
+    return \App\Models\Tema::select('id', 'titulo')->get();
+})->middleware('auth');

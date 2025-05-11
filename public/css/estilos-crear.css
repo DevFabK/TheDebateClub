@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap');
 
+/* Estilos generales */
 html,
 body {
     height: 100%;
@@ -20,6 +21,7 @@ main {
     flex: 1;
 }
 
+/* Contenedor principal del formulario */
 .crear-wrapper {
     display: flex;
     flex-direction: column;
@@ -33,6 +35,7 @@ main {
     border-radius: 3px;
 }
 
+/* Título del formulario */
 .titulo-crear {
     width: fit-content;
     padding: 0 55px;
@@ -55,12 +58,21 @@ main {
     font-size: 30px;
 }
 
+.header-container {
+    position: relative;
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+/* Formulario */
 .seleccion-crear {
     display: flex;
     flex-direction: column;
     width: 100%;
 }
 
+/* Selector de tipo de post */
 .seleccion-wrapper {
     width: 100%;
     max-width: 260px;
@@ -69,15 +81,63 @@ main {
 .seleccion-wrapper select {
     width: 100%;
     margin-bottom: 20px;
-    font-family: 'Fredoka', sans-serif;
     font-size: 20px;
     padding: 8px;
 }
 
-.seleccion-wrapper select option {
+.seleccion-wrapper select option,
+#tema_id option,
+#debate_id option {
     font-size: 16px;
+    line-height: 1.5;
 }
 
+/* Wrappers para debates y argumentos */
+#debate-wrapper,
+#argumento-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.selector-tema,
+.selector-debate {
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #000;
+    border-radius: 2px;
+    background-color: #fff;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    width: auto; /* En lugar de 100% */
+    min-width: 300px; /* Ancho mínimo definido */
+    height: auto;
+    min-height: 45px;
+    padding-top: 12px;
+}
+
+.seleccion-wrapper select {
+    width: 100%;           
+    padding: 10px 25px;    
+    font-size: 18px;
+    font-weight: 300;       
+    border: 1px solid #ccc; 
+    box-sizing: border-box;         
+    margin-bottom: 20px;
+}
+
+.selector-tema,
+.selector-debate,
+#tema_id {
+    margin: 10px 0; 
+    height: auto;
+    min-height: 45px; 
+    padding-top: 12px;
+}
+
+/* Área de texto */
 #argumento-usuario {
     width: 100%;
     min-height: 200px;
@@ -88,6 +148,7 @@ main {
     resize: vertical;
 }
 
+/* Botón de publicar */
 .publicar {
     width: fit-content;
     padding: 10px 35px;
@@ -99,12 +160,36 @@ main {
     font-weight: 300;
     letter-spacing: 1px;
     transition: background-color 0.3s ease;
+    border-radius: 2px;
+    border: 1px solid black;
 }
 
 .publicar:hover {
     background-color: #0e3ad5;
 }
 
+/* Otros estilos para inputs */
+.input-container {
+    position: relative;
+    width: 250px;
+    font-family: monospace;
+}
+
+.input {
+    font-size: 18px;
+    font-weight: bold;
+    color: #000;
+    background-color: #fff;
+    position: relative;
+    overflow: hidden;
+    border-radius: 0;
+    outline: none;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 5px 5px 0 #000, 10px 10px 0 #385cd1;
+    font-family: monospace;
+}
+
+/* Editor de texto y sus elementos */
 .editor-toolbar {
     background-color: #335ce5db;
     border: 1px solid black;
@@ -129,73 +214,50 @@ main {
     padding: 10px 25px;
 }
 
-.header-container {
-    position: relative;
-    display: flex;
-    gap: 30px;
-    align-items: center;
+option {
+    color: #333;
+    padding: 6px;
 }
 
-.titulo-debate {
-    width: 100%;
-    border: none;
-    padding: 10px 25px;
-    background-color: white;
-    border-radius: 3px;
-    border: 1px solid #ccc;
-}
-
-.input-container {
-    position: relative;
-    width: 250px;
-    font-family: monospace;
-}
-
-.input {
-    width: 100%;
-    padding: 15px;
-    font-size: 18px;
-    font-weight: bold;
-    color: #000;
-    background-color: #fff;
-    border: 4px solid #000;
+/* Animaciones y efectos especiales */
+.smooth-type {
     position: relative;
     overflow: hidden;
-    border-radius: 0;
-    outline: none;
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    box-shadow: 5px 5px 0 #000, 10px 10px 0 #385cd1;
 }
 
-@keyframes glitch {
-    0% {
-        transform: translate(0);
-    }
+.smooth-type::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(90deg, #fff 0%, rgba(255, 255, 255, 0) 100%);
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
 
-    20% {
-        transform: translate(-2px, 2px);
-    }
+.smooth-type:focus::before {
+    opacity: 1;
+    animation: type-gradient 2s linear infinite;
+}
 
-    40% {
-        transform: translate(-2px, -2px);
-    }
+.input::placeholder {
+    color: #888;
+    transition: color 0.3s ease;
+}
 
-    60% {
-        transform: translate(2px, 2px);
-    }
-
-    80% {
-        transform: translate(2px, -2px);
-    }
-
-    100% {
-        transform: translate(0);
-    }
+.input:focus::placeholder {
+    color: transparent;
 }
 
 .input:focus {
-    animation: focus-pulse 4s cubic-bezier(0.25, 0.8, 0.25, 1) infinite,
-        glitch 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) infinite;
+    animation: focus-pulse 4s cubic-bezier(0.25, 0.8, 0.25, 1) infinite;
+}
+
+.input:focus {
+    transform: rotate(0deg) scale(1.05);
 }
 
 .input:focus::after {
@@ -222,110 +284,173 @@ main {
     animation: glitch-slice 4s steps(2, end) infinite;
 }
 
-@keyframes glitch-slice {
-    0% {
-        clip-path: inset(0 100% 0 0);
+/* Keyframes para animaciones */
+@keyframes focus-pulse {
+    0%, 100% {
+        border-color: #000;
     }
-
-    10% {
-        clip-path: inset(0 5% 0 0);
-    }
-
-    20% {
-        clip-path: inset(0 80% 0 0);
-    }
-
-    30% {
-        clip-path: inset(0 10% 0 0);
-    }
-
-    40% {
-        clip-path: inset(0 50% 0 0);
-    }
-
     50% {
-        clip-path: inset(0 30% 0 0);
+        border-color: #1a4df4db;
     }
-
-    60% {
-        clip-path: inset(0 70% 0 0);
-    }
-
-    70% {
-        clip-path: inset(0 15% 0 0);
-    }
-
-    80% {
-        clip-path: inset(0 90% 0 0);
-    }
-
-    90% {
-        clip-path: inset(0 5% 0 0);
-    }
-
-    100% {
-        clip-path: inset(0 100% 0 0);
-    }
-}
-
-.input:focus {
-    transform: rotate(0deg) scale(1.05);
-}
-
-.smooth-type {
-    position: relative;
-    overflow: hidden;
-}
-
-.smooth-type::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background: linear-gradient(90deg, #fff 0%, rgba(255, 255, 255, 0) 100%);
-    z-index: 1;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.smooth-type:focus::before {
-    opacity: 1;
-    animation: type-gradient 2s linear infinite;
 }
 
 @keyframes type-gradient {
     0% {
         background-position: 300px 0;
     }
-
     100% {
         background-position: 0 0;
     }
 }
 
-.input::placeholder {
-    color: #888;
-    transition: color 0.3s ease;
-}
-
-.input:focus::placeholder {
-    color: transparent;
-}
-
-.input:focus {
-    animation: focus-pulse 4s cubic-bezier(0.25, 0.8, 0.25, 1) infinite;
-}
-
-@keyframes focus-pulse {
-
-    0%,
+@keyframes glitch {
+    0% {
+        transform: translate(0);
+    }
+    20% {
+        transform: translate(-2px, 2px);
+    }
+    40% {
+        transform: translate(-2px, -2px);
+    }
+    60% {
+        transform: translate(2px, 2px);
+    }
+    80% {
+        transform: translate(2px, -2px);
+    }
     100% {
-        border-color: #000;
+        transform: translate(0);
     }
+}
 
-    50% {
-        border-color: #1a4df4db;
+@keyframes glitch-slice {
+    0% {
+        clip-path: inset(0 100% 0 0);
     }
+    10% {
+        clip-path: inset(0 5% 0 0);
+    }
+    20% {
+        clip-path: inset(0 80% 0 0);
+    }
+    30% {
+        clip-path: inset(0 10% 0 0);
+    }
+    40% {
+        clip-path: inset(0 50% 0 0);
+    }
+    50% {
+        clip-path: inset(0 30% 0 0);
+    }
+    60% {
+        clip-path: inset(0 70% 0 0);
+    }
+    70% {
+        clip-path: inset(0 15% 0 0);
+    }
+    80% {
+        clip-path: inset(0 90% 0 0);
+    }
+    90% {
+        clip-path: inset(0 5% 0 0);
+    }
+    100% {
+        clip-path: inset(0 100% 0 0);
+    }
+}
+
+.postura img {
+    width: 32px;
+    height: auto;
+}
+
+#argumento-wrapper {
+    display: flex;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.argumento-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+/* Ajustes para el selector de debates */
+.selector-debate {
+    width: auto;
+    min-width: 300px;
+    margin: 0;
+}
+
+.postura {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+}
+
+.iconos-postura {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    justify-content: center;
+}
+
+.postura p {
+    margin: 0;
+    font-weight: 500;
+}
+
+.postura img {
+    width: 28px;
+    height: auto;
+    cursor: pointer;
+}
+
+#debate_id {
+    width: auto;
+}
+
+#titulo-debate{
+    width: fit-content;
+    padding: 10px;
+}
+
+#tema_id {
+    width: auto;
+    margin: 10px 0;
+    height: auto;
+    min-height: 45px;
+    padding: 8px;
+}
+
+#debate-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    margin-bottom: 20px;
+    align-items: flex-start; 
+}
+
+
+#tema_id {
+    width: auto;
+    max-width: 400px; 
+    min-width: 250px; 
+    margin: 10px 0; 
+    height: auto;
+    min-height: 45px;
+    padding: 8px;
+    align-self: flex-start; 
+}
+
+#titulo-debate {
+    width: 100%;
+    max-width: 400px; 
+    padding: 10px;
 }
