@@ -454,3 +454,26 @@ option {
     max-width: 400px; 
     padding: 10px;
 }
+
+.postura {
+    padding: 10px 15px;
+    font-size: 18px;
+    color: #000;
+    background-color: #fff;
+    position: relative;
+    overflow: hidden;
+    border-radius: 0;
+    outline: none;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 5px 5px 0 #000, 10px 10px 0 #385cd1;
+    font-family: 'Fredoka';
+}
+
+.iconos-postura svg {
+    transition: transform 0.2s ease;
+}
+
+.iconos-postura svg:hover  {
+    transform: translateY(-5%) scale(1.2);
+    cursor: pointer;
+}

@@ -43,7 +43,6 @@ class PublicarController extends Controller
             $debate->save();
 
             return redirect()->route('home')->with('exito', 'Debate creado correctamente.');
-
         } elseif ($eleccion === 'argumento') {
             $datosValidados = $request->validate([
                 'eleccion' => 'required|in:debate,argumento',
@@ -60,7 +59,7 @@ class PublicarController extends Controller
             $argumento->contenido = $datosValidados['texto-usuario'];
             $argumento->debate_id = $datosValidados['debate_id'];
             $argumento->usuario_id = Auth::id();
-            $argumento->postura = 'Neutral'; // Cambiar para que lo pille de los iconos de las posturas
+            $argumento->postura = $request->input('postura', 'Neutral'); // si no llega nada, usa Neutral
 
             $argumento->save();
 

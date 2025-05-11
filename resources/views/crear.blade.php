@@ -50,14 +50,35 @@
                                 </option>
                             @endforeach
                         </select>
+                        <input type="hidden" name="postura" id="postura-input" value="Neutral">
                         <div class="postura" id="postura">
                             <p>POSTURA: </p>
                             <div class="iconos-postura">
-                                <img src="images/double-up.svg" alt="icono de a favor">
-                                <img src="images/up.svg" alt="icono de parcialmente a favor">
-                                <img src="images/neutral.svg" alt="icono de posicion neutral">
-                                <img src="images/down.svg" alt="icono de parcialmente en contra">
-                                <img src="images/double-down.svg" alt="icono de en contra">
+                                <svg width="32px" height="32px" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M17 18L12 13L7 18M17 11L12 6L7 11" stroke="#777" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                                <svg width="32px" height="32px" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M6 15L12 9L18 15" stroke="#777" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg>
+                                <svg width="32px" height="32px" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M7 15L12 20L17 15M7 9L12 4L17 9" stroke="#777" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                                <svg width="32px" height="32px" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M6 9L12 15L18 9" stroke="#777" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg>
+                                <svg width="32px" height="32px" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M7 13L12 18L17 13M7 6L12 11L17 6" stroke="#777" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
                             </div>
                         </div>
                     </div>
@@ -83,7 +104,42 @@
         const debateWrapper = document.getElementById("debate-wrapper");
         const seleccion = document.getElementById("eleccion");
         const argumentoWrapper = document.getElementById("argumento-wrapper");
+
+        // Colores de las posturas 
+        const colores = [
+            "#00ff00", // Verde 
+            "#66cc66", // Verde apagado
+            "#282828", // Gris diferente a #777
+            "#cc6666", // Rojo apagado
+            "#ff0000" // Rojo 
+        ];
+
+        const coloresFondo = [
+            "#ccffcc", // Fondo verde claro
+            "#e6f2e6", // Fondo verde más apagado
+            "#dddddd", // Fondo gris claro
+            "#f2dede", // Fondo rojo apagado
+            "#ffcccc" // Fondo rojo
+        ];
         
+        const svgs = document.querySelectorAll('.iconos-postura svg');
+        
+        svgs.forEach((svg, index) => {
+            svg.addEventListener('click', () => {
+                svgs.forEach(s => {
+                    const path = s.querySelector('path');
+                    path.setAttribute('stroke', '#777');
+                    s.style.backgroundColor = 'transparent';
+                });
+                
+                const path = svg.querySelector('path');
+                path.setAttribute('stroke', colores[index]);
+                svg.style.backgroundColor = coloresFondo[index];
+                const posturas = ['A favor', 'Parcialmente a favor', 'Neutral', 'Parcialmente en contra', 'En contra'];
+                document.getElementById('postura-input').value = posturas[index];
+            });
+        });
+
         function actualizarVisibilidadInputs() {
             if (seleccion.value === "debate") {
                 debateWrapper.style.display = "flex";
@@ -98,7 +154,7 @@
             } else if (seleccion.value === "argumento") {
                 // Mostrar sección de argumentos
                 argumentoWrapper.style.display = "flex";
-                argumentoWrapper.style.justifyContent="space-between";
+                argumentoWrapper.style.justifyContent = "space-between";
                 document.getElementById("debate_id").required = true;
 
                 // Ocultar sección de debates
