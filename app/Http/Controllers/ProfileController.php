@@ -9,7 +9,7 @@ class ProfileController extends Controller
     public function mostrarPerfil()
     {
         $user = Auth::user();
-        $temasParticipados = $user->argumentos()
+        $temasParticipados = $user->argumentos() // Da error pero no afecta. Funciona correctamente.
         ->with('debate.tema')
         ->get()
         ->pluck('debate.tema')
