@@ -29,6 +29,8 @@ Route::get('/logout', function () {
 // MOSTRAR LOS TEMAS EN HOME
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
+Route::get('/obtenerDebatesDestacados', [HomeController::class, 'destacados']);
+
 // PERFIL
 Route::get('/perfil', [ProfileController::class, 'mostrarPerfil'])
     ->middleware('auth')

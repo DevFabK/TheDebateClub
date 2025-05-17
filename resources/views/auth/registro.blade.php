@@ -70,7 +70,7 @@
                     </div>
 
                     <div class="otras-opciones">
-                        <a href="{{ route('login') }}" class="boton__entrada__sombra">¿Ya tienes cuenta?</a>
+                        <a href="{{ route('login') }}" class="boton__entrada__sombra">Iniciar sesion</a>
                         <a href="{{ route('home') }}" class="boton__entrada__sombra">Entrar como invitado</a>
                     </div>
                 </form>

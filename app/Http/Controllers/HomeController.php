@@ -19,4 +19,12 @@ class HomeController extends Controller
         // Pasar datos a la vista
         return view('home', compact('temasArray', 'debatesDestacados'));
     }
+
+    public function destacados(DebateController $debateController)
+    {
+
+        $debatesDestacados = $debateController->obtenerDebatesDestacados();
+
+        return response()->json($debatesDestacados);
+    }
 }

@@ -59,7 +59,7 @@
                     </div>
 
                     <div class="otras-opciones">
-                        <a href="{{ route('registro') }}" class="boton__entrada__sombra">¿No tienes cuenta?</a>
+                        <a href="{{ route('registro') }}" class="boton__entrada__sombra">Crear cuenta</a>
                         <a href="{{ route('home') }}" class="boton__entrada__sombra">Entrar como invitado</a>
                     </div>
                 </form>

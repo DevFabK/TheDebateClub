@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
     height: 100%;
     margin: 0;
 }
@@ -28,15 +29,21 @@ body {
 }
 
 .info-personal {
+    position: relative;
     display: flex;
     flex-direction: row;
     gap: 20px;
     align-items: center;
-    margin-bottom: 10px;
+    margin: 30px 0;
+    background-color: white;
+    border: 2px solid;
+    width: fit-content;
+    padding: 15px;
 }
 
-.informacion-personal p, .informacion-personal h3 {
-    margin: 0;
+.informacion p,
+.informacion h3 {
+    border-bottom: 2px solid #0a3fe9;
 }
 
 .foto-perfil {
@@ -47,6 +54,7 @@ body {
 }
 
 .puntos {
+    display: flex;
     font-weight: bold;
 }
 
@@ -54,10 +62,12 @@ body {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: 1fr;
-    flex: 1; 
+    flex: 1;
+    margin-top: 15px;
 }
 
-.participacion, .mejor-argumento {
+.participacion,
+.mejor-argumento {
     position: relative;
     margin-top: 2rem;
     background-color: #f9f9f9;
@@ -81,7 +91,9 @@ body {
     border-bottom: 2px solid #0a3fe9;
 }
 
-.participacion::before, .mejor-argumento::before {
+.participacion::before,
+.mejor-argumento::before,
+.info-personal::before {
     content: attr(data-label);
     color: white;
     position: absolute;
@@ -96,4 +108,35 @@ body {
     border-radius: 3px;
     width: fit-content;
     height: fit-content;
+}
+
+
+.atras-perfil {
+    width: fit-content;
+    padding: 10px 35px;
+    background-color: #1a4df4db;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 400;
+    letter-spacing: 1px;
+    transition: background-color 0.3s ease;
+    border-radius: 2px;
+    border: 1px solid black;
+    font-size: 1rem;
+}
+
+.nombre-y-puntos {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* o el espacio que prefieras entre nombre y puntos */
+}
+
+.nombre-y-puntos h3 {
+    margin: 0;
+}
+
+.puntos {
+    font-weight: bold;
 }
