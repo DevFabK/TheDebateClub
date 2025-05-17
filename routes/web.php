@@ -46,6 +46,6 @@ Route::get('/tema/{id}', [BuscadorTemasController::class, 'irAlTema'])->name('te
 Route::get('/crear', [PublicarController::class, 'mostrarPanelCrear'])->middleware('auth')->name('crear');
 Route::post('/crear', [PublicarController::class, 'post'])->middleware('auth')->name('crear.post');
 
-Route::get('/temas', function () {
-    return \App\Models\Tema::select('id', 'titulo')->get();
-})->middleware('auth');
+// Route::get('/temas', function () {
+//     return \App\Models\Tema::select('id', 'titulo')->get();
+// })->middleware('auth');
