@@ -23,7 +23,9 @@
             <div class="temas-viewport">
                 <div class="temas">
                     @foreach ($temasArray as $tema)
-                        <div class="tema">{{ $tema->titulo }}</div>
+                        <a href="{{ route('tema.ver', $tema->id) }}" class="tema">
+                            {{ $tema->titulo }}
+                        </a>
                     @endforeach
                 </div>
             </div>

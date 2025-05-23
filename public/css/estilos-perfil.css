@@ -74,7 +74,7 @@ body {
     width: fit-content;
     height: fit-content;
     border: 2px solid;
-    padding: 5px;
+    padding: 10px 20px;
 }
 
 .mejor-argumento {
@@ -110,7 +110,6 @@ body {
     height: fit-content;
 }
 
-
 .atras-perfil {
     width: fit-content;
     padding: 10px 35px;
@@ -130,7 +129,7 @@ body {
 .nombre-y-puntos {
     display: flex;
     align-items: center;
-    gap: 20px; /* o el espacio que prefieras entre nombre y puntos */
+    gap: 20px;
 }
 
 .nombre-y-puntos h3 {

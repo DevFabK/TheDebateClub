@@ -4,8 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegistroController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TemaController;
 use App\Http\Controllers\BuscadorTemasController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ArgumentoController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\PublicarController;
 
@@ -46,6 +48,12 @@ Route::get('/tema/{id}', [BuscadorTemasController::class, 'irAlTema'])->name('te
 Route::get('/crear', [PublicarController::class, 'mostrarPanelCrear'])->middleware('auth')->name('crear');
 Route::post('/crear', [PublicarController::class, 'post'])->middleware('auth')->name('crear.post');
 
-// Route::get('/temas', function () {
-//     return \App\Models\Tema::select('id', 'titulo')->get();
-// })->middleware('auth');
+// Ver un tema 
+Route::get('/tema/{id}', [TemaController::class, 'ver'])
+    ->middleware('auth')
+    ->name('tema.ver');
+
+Route::get('/estrellas', [ArgumentoController::class, 'estrellas'])->name('estrellas');
+Route::post('/estrellas', [ArgumentoController::class, 'guardarEstrella'])
+    ->middleware('auth')
+    ->name('estrellas.guardar');

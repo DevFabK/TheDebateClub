@@ -1,0 +1,215 @@
+@import url('https://fonts.googleapis.com/css2?family=Limelight&display=swap');
+
+.contenido-tema {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    background-color: #dadada65;
+    border: 3px solid #000;
+}
+
+.titulo-tema {
+    position: relative;
+    background-color: white;
+    border: 2px solid #000;
+    width: fit-content;
+    padding: 20px 30px;
+    margin: 30px 0;
+}
+
+.titulo-tema h1 {
+    margin: 0;
+    border-bottom: 2px solid #0a3fe9;
+    font-size: 2rem;
+    color: #333;
+    font-family: "Limelight", sans-serif;
+}
+
+.debates-container {
+    position: relative;
+    background-color: #f9f9f9;
+    border: 2px solid #000;
+    padding: 20px;
+    margin: 20px 0;
+    flex: 1;
+}
+
+.debate-item {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.debate-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.debate-titulo {
+    position: relative;
+    background-color: white;
+    border: 2px solid #000;
+    width: fit-content;
+    padding: 15px 20px;
+    margin-bottom: 20px;
+}
+
+.debate-titulo h3 {
+    margin: 0;
+    border-bottom: 2px solid #0a3fe9;
+    font-size: 1.3rem;
+    color: #333;
+}
+
+.argumentos-section {
+    margin-left: 20px;
+}
+
+.argumentos-lista {
+    position: relative;
+    background-color: white;
+    border: 2px solid #000;
+    width: fit-content;
+    min-width: 400px;
+    padding: 15px 20px;
+    margin-top: 2rem;
+}
+
+.sin-argumentos {
+    position: relative;
+    background-color: white;
+    border: 2px solid #000;
+    width: fit-content;
+    min-width: 300px;
+    padding: 15px 20px;
+    margin-top: 2rem;
+}
+
+.argumento-item {
+    position: relative;
+    background-color: #f8f9fa;
+    border: 2px solid #0a3fe9;
+    border-radius: 5px;
+    padding: 15px 20px;
+    margin: 15px 0;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+}
+    
+.argumento-item::before {
+    content: attr(data-numero);
+    position: absolute;
+    top: -12px;
+    left: 15px;
+    background-color: #0a3fe9;
+    color: white;
+    padding: 3px 8px;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 3px;
+    border: 1px solid #000;
+}
+
+.argumento-contenido {
+    line-height: 1.6;
+    color: #333;
+    font-size: 15px;
+}
+
+.argumento-favor {
+    background-color: #e8f8e8;
+    border-color: #28a745;
+}
+
+.argumento-contra {
+    background-color: #fde8e8;
+    border-color: #dc3545;
+}
+
+.argumento-neutra {
+    background-color: #f0f0f0;
+    border-color: #6c757d;
+}
+
+.argumento-favor::before {
+    background-color: #28a745;
+}
+
+.argumento-contra::before {
+    background-color: #dc3545;
+}
+
+.argumento-neutra::before {
+    background-color: #6c757d;
+}
+
+.argumento-parcial-favor {
+    background-color: #eafbe8;
+    border-color: #85d17d;
+}
+
+.argumento-parcial-contra {
+    background-color: #fbe8ea;
+    border-color: #e28a8a;
+}
+
+.argumento-parcial-favor::before {
+    background-color: #85d17d;
+}
+
+.argumento-parcial-contra::before {
+    background-color: #e28a8a;
+}
+
+.sin-argumentos p {
+    margin: 0;
+    font-style: italic;
+    color: #666;
+    border-bottom: 2px solid #0a3fe9;
+    padding-bottom: 5px;
+}
+
+/* Etiquetas con data-label */
+.titulo-tema::before,
+.debates-container::before,
+.debate-titulo::before,
+.argumentos-lista::before,
+.sin-argumentos::before {
+    content: attr(data-label);
+    color: white;
+    position: absolute;
+    top: -30px;
+    left: 10px;
+    background: #325ce9;
+    font-weight: bold;
+    padding: 5px 10px;
+    font-size: 16px;
+    transform: rotate(-2deg);
+    border: 2px solid #000;
+    border-radius: 3px;
+    width: fit-content;
+    height: fit-content;
+    z-index: 10;
+}
+
+.atras-tema {
+    width: fit-content;
+    padding: 10px 35px;
+    background-color: #1a4df4db;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 400;
+    letter-spacing: 1px;
+    transition: background-color 0.3s ease;
+    border-radius: 2px;
+    border: 1px solid black;
+    font-size: 1rem;
+    margin-top: 20px;
+}
+
+.atras-tema:hover {
+    background-color: #1a4df4;
+}

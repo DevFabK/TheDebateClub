@@ -137,6 +137,7 @@
                 svg.style.backgroundColor = coloresFondo[index];
                 const posturas = ['A favor', 'Parcialmente a favor', 'Neutral', 'Parcialmente en contra', 'En contra'];
                 document.getElementById('postura-input').value = posturas[index];
+                console.log(posturas[index]);
             });
         });
 
