@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('puntuaciones', function (Blueprint $table) {
-            $table->timestamps(); // Agrega created_at y updated_at
+            //
         });
     }
 
@@ -22,7 +22,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('puntuaciones', function (Blueprint $table) {
-            $table->dropTimestamps();
+            //
         });
     }
 };

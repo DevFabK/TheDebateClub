@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const descripcionDestacados = document.querySelectorAll('.descripcion-destacado');
             const contenidoArgumentos = document.querySelectorAll('.contenido-argumento');
             const posturaArgumentos = document.querySelectorAll('.postura-argumento');
+            const puntuacionArgumentos = document.querySelectorAll('.puntuacion-argumento');
 
             if (
                 tituloDestacados.length === data.length &&
@@ -14,16 +15,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 data.forEach((item, index) => {
                     const debate = item.debate;
                     const argumento = item.argumentoDestacado;
+                    const puntuacion = item.puntuacionTotal;
 
-                    // Título
                     const tituloTexto = debate?.titulo;
                     tituloDestacados[index].innerHTML = tituloTexto ? marked.parse(tituloTexto) : "Sin título";
 
-                    // Descripción
                     const descripcionTexto = debate?.descripcion;
                     descripcionDestacados[index].innerHTML = descripcionTexto ? marked.parse(descripcionTexto) : "Sin descripción";
 
-                    // Argumento
+ 
                     if (argumento) {
                         const contenido = argumento.contenido;
                         const postura = argumento.postura;
@@ -35,10 +35,17 @@ document.addEventListener("DOMContentLoaded", () => {
                         if (posturaArgumentos[index]) {
                             posturaArgumentos[index].textContent = postura ?? "Sin postura";
                         }
-                    }
+
+                        if (puntuacionArgumentos[index]) {
+                            puntuacionArgumentos[index].textContent = puntuacion ?? "0";
+                        }
+                    } 
                 });
             } else {
                 console.warn("Cantidad de elementos HTML no coincide con los datos.");
             }
+        })
+        .catch(error => {
+            console.error("Error al obtener debates destacados:", error);
         });
 });

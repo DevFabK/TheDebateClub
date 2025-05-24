@@ -23,8 +23,4 @@
 
         <div class="footer-right"></div>
     </div>
-
-    <div class="footer-bottom">
-        <p>Este sitio usa la API de Open AI para generar debates automáticamente</p>
-    </div>
 </footer>

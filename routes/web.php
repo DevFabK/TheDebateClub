@@ -10,6 +10,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ArgumentoController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\PublicarController;
+use Symfony\Component\HttpKernel\Profiler\Profile;
 
 // PRIMERA PAGINA (LOGIN)
 Route::get('/', [LoginController::class, 'mostrarFormularioLogin']);
@@ -53,7 +54,12 @@ Route::get('/tema/{id}', [TemaController::class, 'ver'])
     ->middleware('auth')
     ->name('tema.ver');
 
+// Funcion de las estrellas
 Route::get('/estrellas', [ArgumentoController::class, 'estrellas'])->name('estrellas');
 Route::post('/estrellas', [ArgumentoController::class, 'guardarEstrella'])
     ->middleware('auth')
     ->name('estrellas.guardar');
+
+// Editar el perfil
+Route::get('/perfil/editar', [ProfileController::class, 'mostrarPerfil'])->name('perfil.edit');
+Route::put('/perfil/editar', [ProfileController::class, 'update'])->name('perfil.update');

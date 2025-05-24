@@ -44,7 +44,10 @@
                             <div class="argumento-destacado">
                                 <h4>Argumento más valorado:</h4>
                                 <p class="contenido-argumento"></p>
-                                <p><strong>Postura:</strong> <span class="postura-argumento"></span></p>
+                                <div class="puntuacion">
+                                    <p><strong>Postura:</strong> <span class="postura-argumento"></span></p>
+                                    <p><strong>Puntuación total:</strong> <span class="puntuacion-argumento"></span></p>
+                                </div>
                             </div>
                         @else
                             <p><em>Este debate aún no tiene argumentos destacados.</em></p>

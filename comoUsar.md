@@ -6,3 +6,6 @@ artisan db:seed --class=DatabaseSeeder
 
 npm run dev y en otra terminal php artisan serve
 
+- Para el enlace simbólico a storage
+ 
+php artisan storage:link

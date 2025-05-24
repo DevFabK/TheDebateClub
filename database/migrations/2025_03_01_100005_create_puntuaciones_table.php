@@ -14,7 +14,7 @@ return new class extends Migration
             $table->unsignedBigInteger('argumento_id');
             $table->unsignedBigInteger('usuario_id');
             $table->integer('puntuacion');
-            
+            $table->timestamps(); 
             $table->unique(['argumento_id', 'usuario_id']);
 
             $table->foreign('argumento_id')->references('id')->on('argumentos')->onDelete('cascade');

@@ -85,7 +85,9 @@
                 </div>
 
                 <textarea name="texto-usuario" id="texto-usuario">{{ old('texto-usuario') }}</textarea>
+                <button type="button" class="publicar" id="volver" style="background-color: #dc3545">VOLVER</button>
                 <button type="submit" class="publicar" value="Publicar" id="enviar">PUBLICAR</button>
+
 
                 @if ($errors->any())
                     <div class="errores-validacion" style="color: red; margin-bottom: 20px;">
@@ -121,9 +123,9 @@
             "#f2dede", // Fondo rojo apagado
             "#ffcccc" // Fondo rojo
         ];
-        
+
         const svgs = document.querySelectorAll('.iconos-postura svg');
-        
+
         svgs.forEach((svg, index) => {
             svg.addEventListener('click', () => {
                 svgs.forEach(s => {
@@ -131,11 +133,13 @@
                     path.setAttribute('stroke', '#777');
                     s.style.backgroundColor = 'transparent';
                 });
-                
+
                 const path = svg.querySelector('path');
                 path.setAttribute('stroke', colores[index]);
                 svg.style.backgroundColor = coloresFondo[index];
-                const posturas = ['A favor', 'Parcialmente a favor', 'Neutral', 'Parcialmente en contra', 'En contra'];
+                const posturas = ['A favor', 'Parcialmente a favor', 'Neutral', 'Parcialmente en contra',
+                    'En contra'
+                ];
                 document.getElementById('postura-input').value = posturas[index];
                 console.log(posturas[index]);
             });
@@ -170,5 +174,9 @@
         });
 
         seleccion.addEventListener("change", actualizarVisibilidadInputs);
+
+        document.getElementById('volver').addEventListener('click', function() {
+            history.back();
+        });
     </script>
 @endsection

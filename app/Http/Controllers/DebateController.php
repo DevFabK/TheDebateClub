@@ -22,16 +22,21 @@ class DebateController extends Controller
                 return null;
             }
 
+            // Calculamos la puntuación total de cada argumento
             $argumentoDestacado = $debate->argumentos->sortByDesc(function ($argumento) {
-                return $argumento->puntuaciones->count();
+                return $argumento->puntuaciones->sum('puntuacion'); // Asumiendo que el campo puntuación es 'valor'
             })->first();
+
+            // Obtenemos la puntuación total del argumento destacado
+            $puntuacionTotal = $argumentoDestacado ? $argumentoDestacado->puntuaciones->sum('puntuacion') : 0;
 
             return [
                 'debate' => $debate,
                 'argumentoDestacado' => $argumentoDestacado,
+                'puntuacionTotal' => $puntuacionTotal,
             ];
         })->filter();
 
-        return $debatesDestacados;
+        return $debatesDestacados->values();
     }
 }
