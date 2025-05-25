@@ -26,11 +26,6 @@
     padding: 5px;
 }
 
-.header-titulo:hover {
-    transform: rotate(2deg);
-    box-shadow: 15px 15px 0 -5px #212121;
-}
-
 .menu {
     display: flex;
     flex-wrap: wrap;
@@ -43,11 +38,6 @@
     box-shadow: 10px 10px 0 #1c1c1c;
     transition: all 0.3s ease;
     flex-grow: 0; 
-}
-
-.menu:hover {
-    transform: rotate(5deg);
-    box-shadow: 15px 15px 0 -5px #212121;
 }
 
 .menu svg {
