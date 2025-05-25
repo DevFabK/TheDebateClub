@@ -230,3 +230,37 @@
     text-decoration: underline 2px solid #0a3fe9;
     text-underline-offset: 3px;
 }
+
+.seccion-resultados {
+    width: 90%;
+    text-align: center;
+    font-family: "Inconsolata";
+    font-weight: bold;
+    color: #000;
+}
+
+.seccion-resultados h2 {
+    margin-bottom: 10px;
+    text-decoration: underline dotted #e9b50b;
+}
+
+.resultado-enlace {
+    font-family: "Inconsolata";
+    font-size: 1rem;
+    border: 3px solid #000;
+    background-color: #1a4df4db;
+    box-shadow: 6px 6px 0 #1c1c1c;
+    padding: 10px;
+    display: block;
+    margin: 10px auto;
+    width: 80%;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: #fff;
+}
+
+.resultado-enlace:hover {
+    background-color: #a9850e;
+    color: #212121;
+    transform: translateY(-2px);
+}

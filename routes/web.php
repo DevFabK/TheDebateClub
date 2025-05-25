@@ -5,12 +5,12 @@ use App\Http\Controllers\Auth\RegistroController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TemaController;
+use App\Http\Controllers\DebateController;
 use App\Http\Controllers\BuscadorTemasController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ArgumentoController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\PublicarController;
-use Symfony\Component\HttpKernel\Profiler\Profile;
 
 // PRIMERA PAGINA (LOGIN)
 Route::get('/', [LoginController::class, 'mostrarFormularioLogin']);
@@ -63,3 +63,5 @@ Route::post('/estrellas', [ArgumentoController::class, 'guardarEstrella'])
 // Editar el perfil
 Route::get('/perfil/editar', [ProfileController::class, 'mostrarPerfil'])->name('perfil.edit');
 Route::put('/perfil/editar', [ProfileController::class, 'update'])->name('perfil.update');
+
+Route::get('/debate/{id}', [DebateController::class, 'mostrar'])->name('debate');

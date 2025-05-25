@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Tema;
+use App\Models\Debate;
 
 class BuscadorTemasController extends Controller
 {
@@ -13,8 +14,12 @@ class BuscadorTemasController extends Controller
         $termino = $request->input('query');
 
         $temas = Tema::where('titulo', 'like', '%' . $termino . '%')->get();
+        $debates = Debate::where('titulo', 'like', '%' . $termino . '%')->get();
 
-        return response()->json($temas); 
+        return response()->json([
+            'temas' => $temas,
+            'debates' => $debates
+        ]);
     }
 
     // Cuando el usuario pincha un tema: redirigir
@@ -22,6 +27,6 @@ class BuscadorTemasController extends Controller
     {
         $tema = Tema::findOrFail($id);
 
-        return redirect()->route('tema', ['id' => $tema->id]); 
+        return redirect()->route('tema', ['id' => $tema->id]);
     }
 }

@@ -4,7 +4,7 @@ $(document).ready(function () {
 
         if (query.length > 1) {
             $.ajax({
-                url: 'buscar-temas', 
+                url: 'buscar-temas',
                 method: 'POST',
                 data: {
                     _token: $('meta[name="csrf-token"]').attr('content'),
@@ -13,12 +13,23 @@ $(document).ready(function () {
                 success: function (data) {
                     let html = '';
 
-                    // Si hay resultados
-                    if (data.length > 0) {
-                        data.forEach(function (item) {
-                            html += `<a class="tema-buscado" href="/tema/${item.id}">${item.titulo}</a>`;
+                    if (data.temas.length > 0) {
+                        html += '<div class="seccion-resultados"><h2>Temas</h2>';
+                        data.temas.forEach(function (item) {
+                            html += `<a class="resultado-enlace" href="/tema/${item.id}">${item.titulo}</a>`;
                         });
-                    } else {
+                        html += '</div>';
+                    }
+
+                    if (data.debates.length > 0) {
+                        html += '<div class="seccion-resultados"><h2>Debates</h2>';
+                        data.debates.forEach(function (item) {
+                            html += `<a class="resultado-enlace" href="/debate/${item.id}">${item.titulo}</a>`;
+                        });
+                        html += '</div>';
+                    }
+
+                    if (html === '') {
                         html = '<div>No se encontraron resultados</div>';
                     }
 
