@@ -94,7 +94,8 @@ main {
 
 /* Wrappers para debates y argumentos */
 #debate-wrapper,
-#argumento-wrapper {
+#argumento-wrapper,
+#tema-wrapper {
     display: flex;
     flex-direction: row;
     gap: 15px;
@@ -415,11 +416,6 @@ option {
     width: auto;
 }
 
-#titulo-debate{
-    width: fit-content;
-    padding: 10px;
-}
-
 #tema_id {
     width: auto;
     margin: 10px 0;
@@ -449,7 +445,7 @@ option {
     align-self: flex-start; 
 }
 
-#titulo-debate {
+#titulo-debate, .titulo-tema {
     width: 100%;
     max-width: 400px; 
     padding: 10px;
@@ -476,4 +472,12 @@ option {
 .iconos-postura svg:hover  {
     transform: translateY(-5%) scale(1.2);
     cursor: pointer;
+}
+
+.titulo-tema {
+    margin: 0;
+}
+
+.footer {
+    margin-top: 0px;
 }

@@ -234,6 +234,7 @@
 
 .seccion-resultados {
     width: 90%;
+    min-width: fit-content;
     text-align: center;
     font-family: "Inconsolata";
     font-weight: bold;

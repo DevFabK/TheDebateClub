@@ -19,6 +19,12 @@
                         </option>
                         <option value="argumento" {{ old('eleccion') === 'argumento' ? 'selected' : '' }} class="opciones">
                             ARGUMENTO</option>
+                        @auth
+                            @if (Auth::user()->rol->nombre == 'Admin')
+                                <option value="tema" {{ old('eleccion') === 'tema' ? 'selected' : '' }} class="opciones">TEMA
+                                </option>
+                            @endif
+                        @endauth
                     </select>
                 </div>
                 <input id="texto" name="texto" type="text" style="display: none">
@@ -38,10 +44,16 @@
                     </select>
                 </div>
 
+                <div id="tema-wrapper" style="display: none;">
+                    <input id="titulo-tema" name="titulo-tema" placeholder="Título del tema" type="text"
+                        class="input smooth-type titulo-tema" value="{{ old('titulo-tema') }}">
+                </div>
+
                 <div id="argumento-wrapper" style="display: none;">
                     <div class="argumento-container">
                         <select name="debate_id" id="debate_id" class="input smooth-type selector-debate">
-                            <option disabled {{ old('debate_id') ? '' : 'selected' }} value="">Selecciona un debate...
+                            <option disabled {{ old('debate_id') ? '' : 'selected' }} value="">Selecciona un
+                                debate...
                             </option>
                             @foreach ($debates as $debate)
                                 <option value="{{ $debate->id }}"
@@ -106,6 +118,7 @@
         const debateWrapper = document.getElementById("debate-wrapper");
         const seleccion = document.getElementById("eleccion");
         const argumentoWrapper = document.getElementById("argumento-wrapper");
+        const temaWrapper = document.getElementById("tema-wrapper");
 
         // Colores de las posturas 
         const colores = [
@@ -153,19 +166,36 @@
                 document.getElementById("titulo-debate").required = true;
                 document.getElementById("tema_id").required = true;
 
-                // Ocultar sección de argumentos
                 argumentoWrapper.style.display = "none";
                 document.getElementById("debate_id").required = false;
+
+                temaWrapper.style.display = "none";
+                document.getElementById("titulo-tema").required = false;
+
             } else if (seleccion.value === "argumento") {
-                // Mostrar sección de argumentos
                 argumentoWrapper.style.display = "flex";
                 argumentoWrapper.style.justifyContent = "space-between";
                 document.getElementById("debate_id").required = true;
 
-                // Ocultar sección de debates
                 debateWrapper.style.display = "none";
                 document.getElementById("titulo-debate").required = false;
                 document.getElementById("tema_id").required = false;
+
+                temaWrapper.style.display = "none";
+                document.getElementById("titulo-tema").required = false;
+
+            } else if (seleccion.value === "tema") {
+                temaWrapper.style.display = "flex";
+                temaWrapper.style.flexDirection = "column";
+                temaWrapper.style.gap = "15px";
+                document.getElementById("titulo-tema").required = true;
+
+                debateWrapper.style.display = "none";
+                document.getElementById("titulo-debate").required = false;
+                document.getElementById("tema_id").required = false;
+
+                argumentoWrapper.style.display = "none";
+                document.getElementById("debate_id").required = false;
             }
         }
 

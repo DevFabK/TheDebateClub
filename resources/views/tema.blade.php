@@ -9,52 +9,58 @@
 @section('content')
     <!-- Agregar token CSRF para las peticiones AJAX -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    
+
     <div class="contenido-tema">
         <div class="titulo-tema" data-label="Tema Principal">
             <h1>{{ $tema->titulo }}</h1>
         </div>
 
         <div class="debates-container" data-label="Debates del tema">
-            @foreach ($tema->debates as $debate)
-                <div class="debate-item">
-                    <div class="debate-titulo">
-                        <h3>{{ $debate->titulo }}</h3>
-                    </div>
+            @if ($tema->debates->isEmpty())
+                <p>No hay debates para este tema.</p>
+            @else
+                @foreach ($tema->debates as $debate)
+                    <div class="debate-item">
+                        <div class="debate-titulo">
+                            <h3>{{ $debate->titulo }}</h3>
+                        </div>
 
-                    <div class="argumentos-section">
-                        @if ($debate->argumentos->isEmpty())
-                            <div class="sin-argumentos" data-label="Estado">
-                                <p>No hay argumentos aún.</p>
-                            </div>
-                        @else
-                            <div class="argumentos-lista" data-label="Argumentos">
-                                @foreach ($debate->argumentos as $argumento)
-                                    <div class="argumento-item 
-                                    @if ($argumento->postura == 'A favor') argumento-favor 
-                                    @elseif($argumento->postura === 'En contra') argumento-contra 
-                                    @elseif($argumento->postura == 'Parcialmente en contra') argumento-parcial-contra
-                                    @elseif($argumento->postura == 'Parcialmente a favor') argumento-parcial-favor
-                                    @else argumento-neutra @endif"
-                                        id="argumento-{{ $argumento->id }}" data-numero="{{ $argumento->usuario->nombre }}">
-                                        <div class="argumento-contenido" id="argumento-contenido-{{ $argumento->id }}">
-                                            {{ $argumento->contenido }}
-                                            <br>
-                                            <strong>{{ $argumento->postura }}</strong>
-                                            <br>
+                        <div class="argumentos-section">
+                            @if ($debate->argumentos->isEmpty())
+                                <div class="sin-argumentos" data-label="Estado">
+                                    <p>No hay argumentos aún.</p>
+                                </div>
+                            @else
+                                <div class="argumentos-lista" data-label="Argumentos">
+                                    @foreach ($debate->argumentos as $argumento)
+                                        <div class="argumento-item 
+                                            @if ($argumento->postura == 'A favor') argumento-favor 
+                                            @elseif($argumento->postura === 'En contra') argumento-contra 
+                                            @elseif($argumento->postura == 'Parcialmente en contra') argumento-parcial-contra
+                                            @elseif($argumento->postura == 'Parcialmente a favor') argumento-parcial-favor
+                                            @else argumento-neutra @endif"
+                                            id="argumento-{{ $argumento->id }}"
+                                            data-numero="{{ $argumento->usuario->nombre }}">
+                                            <div class="argumento-contenido" id="argumento-contenido-{{ $argumento->id }}">
+                                                {{ $argumento->contenido }}
+                                                <br>
+                                                <strong>{{ $argumento->postura }}</strong>
+                                                <br>
+                                            </div>
                                         </div>
-                                    </div>
-                                @endforeach
-                            </div>
-                        @endif
+                                    @endforeach
+                                </div> 
+                            @endif
+                        </div>
                     </div>
-                </div>
-            @endforeach
+                @endforeach
+            @endif
         </div>
     </div>
 
     <button onclick="window.history.back()" class="atras-tema">Volver</button>
 @endsection
+
 
 @section('scripts')
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
@@ -66,7 +72,7 @@
                     mostrarEstrellas({{ $argumento->id }}, {{ auth()->id() ?? 'null' }});
                 @endforeach
             @endforeach
-            
+
             // Procesar contenido con Markdown si es necesario
             document.querySelectorAll('.contenido-argumento').forEach(el => {
                 const rawContent = el.dataset.contenido;
@@ -155,32 +161,32 @@
             }
 
             fetch('/estrellas', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json',
-                    'X-CSRF-TOKEN': token
-                },
-                body: JSON.stringify({
-                    argumento_id: argumentoId,
-                    puntuacion: value
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                        'X-CSRF-TOKEN': token
+                    },
+                    body: JSON.stringify({
+                        argumento_id: argumentoId,
+                        puntuacion: value
+                    })
                 })
-            })
-            .then(async response => {
-                if (!response.ok) {
-                    const errorData = await response.json();
-                    console.error("Error detalle:", errorData);
-                    throw new Error("Error al guardar puntuación");
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log('Puntuación guardada:', data.mensaje);
-            })
-            .catch(error => {
-                console.error("Error al guardar la puntuación:", error);
-                alert('Error al guardar la puntuación. Inténtalo de nuevo.');
-            });
+                .then(async response => {
+                    if (!response.ok) {
+                        const errorData = await response.json();
+                        console.error("Error detalle:", errorData);
+                        throw new Error("Error al guardar puntuación");
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Puntuación guardada:', data.mensaje);
+                })
+                .catch(error => {
+                    console.error("Error al guardar la puntuación:", error);
+                    alert('Error al guardar la puntuación. Inténtalo de nuevo.');
+                });
         }
     </script>
 @endsection

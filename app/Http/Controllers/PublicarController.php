@@ -64,6 +64,25 @@ class PublicarController extends Controller
             $argumento->save();
 
             return redirect()->route('home')->with('exito', 'Argumento publicado correctamente.');
+        } elseif ($eleccion === 'tema') {
+            $datosValidados = $request->validate([
+                'eleccion' => 'required|in:debate,argumento,tema',
+                'texto-usuario' => 'required|max:255',   
+                'titulo-tema' => 'required|string|max:255',
+            ], [
+                'eleccion.required' => 'Selecciona qué quieres crear.',
+                'texto-usuario.required' => 'Has de rellenar la caja de texto.',
+                'texto-usuario.max' => 'Solo puedes escribir 255 carácteres.',
+                'titulo-tema.required' => 'Has de ponerle un nombre al tema.',
+            ]);
+
+            $tema = new Tema();
+            $tema->titulo = $datosValidados['titulo-tema'];
+            $tema->descripcion = $datosValidados['texto-usuario'];  
+            $tema->usuario_id = Auth::id();
+            $tema->save();
+
+            return redirect()->route('home')->with('exito', 'Tema creado correctamente.');
         }
 
         return redirect()->back()->withErrors(['eleccion' => 'Opción no válida.']);
