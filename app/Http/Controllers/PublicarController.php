@@ -59,7 +59,7 @@ class PublicarController extends Controller
             $argumento->contenido = $datosValidados['texto-usuario'];
             $argumento->debate_id = $datosValidados['debate_id'];
             $argumento->usuario_id = Auth::id();
-            $argumento->postura = $request->input('postura', 'Neutral'); // si no llega nada, usa Neutral
+            $argumento->postura = $request->input('postura', 'Neutral'); 
 
             $argumento->save();
 

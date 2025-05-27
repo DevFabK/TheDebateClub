@@ -31,6 +31,9 @@
             </div>
             <button class="carrusel-btn next-btn">&#10095;</button>
         </div>
+        @if(session('exito'))
+            <p>{{ session('exito') }}</p>
+        @endif
         <h2 class="debates-titulo">Debates Destacados</h2>
 
         <div class="debates-destacados">

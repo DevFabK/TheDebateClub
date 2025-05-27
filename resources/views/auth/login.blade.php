@@ -25,6 +25,9 @@
                     </ul>
                 </div>
             @endif
+            @if (session('success'))
+                <p class="success">{{ session('success') }}</p>
+            @endif
 
             <div class="formulario-contenedor">
                 <form action="{{ route('login') }}" method="POST" novalidate>

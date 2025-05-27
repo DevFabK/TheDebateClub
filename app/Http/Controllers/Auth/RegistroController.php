@@ -41,7 +41,6 @@ class RegistroController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'rol_id' => 3,
-            'foto_perfil' => 'storage/imagenes/perfil/default.jpg',
         ]);
 
         return redirect()->route('login')->with('success', 'Cuenta registrada correctamente.');

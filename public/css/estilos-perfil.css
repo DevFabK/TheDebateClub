@@ -265,3 +265,14 @@ input[type="file"] {
 .btn-descartar:hover {
     background-color: #555;
 }
+
+.editado{
+    margin: 10px;
+    padding: 10px 25px;
+    background-color: #e9b50b;
+    border: 2px solid black;
+    color: black;
+    font-size: 1rem;
+    color: #c93e3e;
+    width: fit-content;
+}

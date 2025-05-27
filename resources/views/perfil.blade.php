@@ -10,9 +10,15 @@
 
     <div class="contenido-perfil">
         <div class="info-personal" data-label="Temas en los que has participado: ">
-            @if ($user->foto_perfil)
-                <img src="{{ asset('storage/' . $user->foto_perfil) }}" alt="Foto de perfil" class="foto-perfil">
-            @endif
+
+            @php
+                $src = $user->foto_perfil
+                    ? asset('storage/' . $user->foto_perfil)
+                    : asset('storage/fotos_perfil/default.jpg');
+            @endphp
+
+            <img src="{{ $src }}" alt="Foto de perfil" class="foto-perfil">
+
             <div class="info">
 
                 <div class="informacion">
@@ -29,16 +35,21 @@
                 </div>
             </div>
         </div>
+        @if (session('success'))
+            <p class="editado">{{ session('success') }}</p>
+        @endif
         <div class="participaciones">
             <div class="participacion" data-label="Temas en los que has participado: ">
                 <ul class="participacion-list">
-                    @foreach ($temasParticipados as $tema)
+                    @forelse ($temasParticipados as $tema)
                         <li>{{ $tema->titulo }}</li>
-                    @endforeach
+                    @empty
+                        <li class="sin-participacion">Aún no has participado en ningún tema.</li>
+                    @endforelse
                 </ul>
             </div>
             <div class="mejor-argumento" data-label="Tu mejor argumento">
-                {{ $mejorArgumento->contenido }}
+                {{ $mejorArgumento->contenido ?? 'Aún no has escrito ningún argumento' }}
             </div>
         </div>
         <a id="btnVolver" class="atras-perfil" href="#">Volver</a>
