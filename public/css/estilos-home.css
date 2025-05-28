@@ -220,6 +220,10 @@
     padding: 15px;
     background-color: #edece7;
     border-left: 4px solid #0a3fe9;
+    height: 250px;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
 .puntuacion {
@@ -274,4 +278,69 @@
     color: black;
     font-size: 1.2rem;
     color: #c93e3e;
+}
+
+@media (max-width: 768px) {
+    .carousel-wrapper {
+        display: none;
+    }
+
+    .titulo-destacado,
+    .descripcion-destacado {
+        text-align: center;
+    }
+
+    .titulo,
+    .debates-titulo {
+        font-size: 2rem;
+        padding: 10px;
+        text-align: center;
+    }
+
+    .debates-destacados {
+        gap: 30px;
+        padding: 0 10px;
+    }
+
+    .puntuacion {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .contenedor {
+        padding: 10px;
+    }
+
+    .tema {
+        width: 150px;
+        height: 60px;
+        font-size: 0.9rem;
+        padding: 8px 10px;
+    }
+
+    .debate-destacado {
+        padding: 15px;
+        font-size: 0.95rem;
+    }
+
+    .resultado-enlace {
+        width: 95%;
+        font-size: 0.95rem;
+    }
+
+    .input-con-icono input {
+        padding: 10px 35px 10px 35px;
+    }
+
+    .icono-busqueda {
+        left: 10px;
+        width: 18px;
+        height: 18px;
+    }
+
+    .carrusel-btn {
+        font-size: 1.3rem;
+    }
 }
