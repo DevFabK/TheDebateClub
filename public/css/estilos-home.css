@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wdth,wght@50..200,200..900&display=swap');
 
+* {
+    box-sizing: border-box;
+}
+
 .contenedor {
     display: flex;
     flex-direction: column;
@@ -200,6 +204,7 @@
     margin: 30px;
     width: 100%;
     max-width: 80vw;
+    align-items: center;
 }
 
 .debate-destacado {
@@ -208,6 +213,7 @@
     background-color: #e9b50b;
     box-shadow: 8px 8px 0 #212121;
     transition: transform 0.3s, box-shadow 0.3s;
+    min-width: 300px;
 }
 
 .debate-destacado:hover {
