@@ -21,7 +21,7 @@
     box-shadow: 10px 10px 0 #1c1c1c;
     display: inline-block;
     transition: all 0.3s ease;
-    flex: 1; 
+    flex: 1;
     text-align: center;
     padding: 5px;
 }
@@ -37,7 +37,7 @@
     background-color: #e9b50b;
     box-shadow: 10px 10px 0 #1c1c1c;
     transition: all 0.3s ease;
-    flex-grow: 0; 
+    flex-grow: 0;
 }
 
 .menu svg {
@@ -53,4 +53,44 @@ a {
 a:visited,
 a:active {
     text-decoration: none;
+}
+
+@media screen and (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        padding: 10px;
+    }
+
+    .header-titulo {
+        font-size: 2rem;
+        letter-spacing: 2px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .menu {
+        width: 100%;
+        justify-content: center;
+        padding: 10px 0;
+    }
+
+    .menu svg {
+        height: 28px;
+        width: 28px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .header-titulo {
+        font-size: 1.8rem;
+        letter-spacing: 1px;
+        padding: 5px;
+    }
+
+    .menu svg {
+        height: 24px;
+        width: 24px;
+    }
 }
