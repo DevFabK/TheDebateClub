@@ -64,7 +64,7 @@ a:active {
     }
 
     .header-titulo {
-        font-size: 2rem;
+        font-size: 2.5rem;
         letter-spacing: 2px;
         width: 100%;
         text-align: center;
@@ -73,13 +73,15 @@ a:active {
     .menu {
         width: 100%;
         justify-content: center;
-        padding: 10px 0;
+        padding: 5px 0;
+        gap: 20px;
     }
 
-    .menu svg {
-        height: 28px;
-        width: 28px;
+    .menu svg{
+        width: 36px;
+        height: 36px;
     }
+
 }
 
 @media screen and (max-width: 480px) {
@@ -89,8 +91,4 @@ a:active {
         padding: 5px;
     }
 
-    .menu svg {
-        height: 24px;
-        width: 24px;
-    }
 }
