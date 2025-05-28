@@ -37,7 +37,7 @@
 
 .iconos {
     display: flex;
-    gap: 20px;
+    gap: 35px;
 }
 
 /* Derecha (vacía, para alinear correctamente el centro) */
@@ -57,4 +57,37 @@ a svg {
 
 a:hover svg {
     transform: translateY(-5px) scale(1.05);
+}
+
+@media screen and (max-width: 768px) {
+    .footer-main {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .footer-left,
+    .footer-right {
+        text-align: center;
+        flex: none;
+        width: 100%;
+    }
+
+    .footer-center {
+        justify-content: center;
+    }
+
+    .iconos {
+        gap: 30px;
+    }
+
+    
+}
+
+@media screen and (max-width: 480px) {
+
+    .iconos {
+        gap: 20px;
+    }
+
 }
