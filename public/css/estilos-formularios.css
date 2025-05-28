@@ -1,6 +1,6 @@
-/* estilos-formularios.css */
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wdth,wght@50..200,200..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Limelight&display=swap');
 
 .contenedor__entrada {
     position: relative;
@@ -50,9 +50,9 @@
 }
 
 .titulo {
-    font-family: "Bebas Neue"; 
+    font-family: "LimeLight";
     text-align: center;
-    font-size: 3rem;
+    font-size: 2.5rem;
     font-weight: bold;
     color: #000;
     border: 3px solid #000;
@@ -62,12 +62,13 @@
     transform: rotate(-5deg);
     display: inline-block;
     transition: all 0.3s ease;
-    margin-top: 20px; 
+    margin-top: 20px;
     letter-spacing: 3px;
+    margin-bottom: 10px;
 }
 
 .titulo:hover {
-    transform: rotate(2deg); 
+    transform: rotate(2deg);
     box-shadow: 25px 25px 0 -5px #000;
 }
 
@@ -80,11 +81,9 @@
     bottom: 0;
     z-index: -1;
     transform: translateZ(-50px);
-    background: linear-gradient(
-      45deg,
-      rgba(255, 107, 107, 0.4) 0%,
-      rgba(255, 107, 107, 0.1) 100%
-    );
+    background: linear-gradient(45deg,
+            rgba(255, 107, 107, 0.4) 0%,
+            rgba(255, 107, 107, 0.1) 100%);
     filter: blur(20px);
 }
 
@@ -167,14 +166,14 @@
     display: flex;
     justify-content: center;
     gap: 15px;
-    margin-top: 20px;
+    margin-top: 40px;
 }
 
 .otras-opciones a {
     text-decoration: none;
 }
 
-.errores{
+.errores {
     position: relative;
     font-weight: bold;
     color: red;
@@ -185,24 +184,24 @@
 }
 
 .errores::before {
-    content: '📌';  
+    content: '📌';
     position: absolute;
-    top: -5px;  
-    right: 0px; 
-    font-size: 25px; 
+    top: -5px;
+    right: 0px;
+    font-size: 25px;
 }
 
-.lista-errores{
+.lista-errores {
     list-style-type: none;
     padding: 10px;
     margin: 10px;
 }
 
-.item-lista-errores{
+.item-lista-errores {
     margin-bottom: 5px;
 }
 
-.success{
+.success {
     margin: 10px;
     padding: 10px 25px;
     background-color: #e9b50b;
@@ -210,4 +209,95 @@
     color: black;
     font-size: 1.2rem;
     color: #c93e3e;
+}
+
+/* responsive */
+
+@media (max-width: 1024px) {
+
+    .otras-opciones {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+        margin-top: 30px;
+    }
+
+    .boton__entrada__sombra {
+        font-size: 16px;
+        padding: 10px 35px;
+    }
+}
+
+@media (max-width: 768px) {
+    .contenedor {
+        height: auto;
+        min-height: 100vh;
+        padding: 40px 10px;
+        background-size: 20px 20px;
+    }
+
+    .contenido {
+        gap: 20px;
+    }
+
+    .contenedor__entrada::before {
+        font-size: 14px;
+        top: -10px;
+        left: 10px;
+        padding: 3px 8px;
+    }
+
+    .entrada__busqueda {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .boton__entrada__sombra {
+        font-size: 16px;
+        padding: 10px 35px;
+    }
+}
+
+@media (max-width: 480px) {
+    .titulo {
+        font-size: 1.8rem;
+        transform: none;
+        box-shadow: none;
+        margin-top: 10px;
+    }
+
+    .contenedor__entrada {
+        padding: 15px;
+        border-width: 2px;
+        box-shadow: 5px 5px 0 #000;
+    }
+
+    .contenedor__entrada:hover {
+        box-shadow: 5px 5px 0 #000;
+    }
+
+    .boton__entrada__sombra {
+        font-size: 14px;
+        padding: 10px 35px;
+    }
+
+    .otras-opciones {
+        gap: 8px;
+    }
+
+    .errores {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .lista-errores {
+        padding: 5px;
+        margin: 5px;
+    }
+
+    .success {
+        font-size: 1rem;
+        padding: 8px 15px;
+    }
 }

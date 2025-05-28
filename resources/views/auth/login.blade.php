@@ -61,14 +61,16 @@
                         <input type="password" name="password" placeholder="Contraseña" class="entrada__busqueda" />
                         <div class="sombra"></div>
                     </div>
+                    <div class="botones">
 
-                    <div class="contenedor__boton">
-                        <button type="submit" class="boton__entrada__sombra">Iniciar sesión</button>
-                    </div>
+                        <div class="contenedor__boton">
+                            <button type="submit" class="boton__entrada__sombra">Iniciar sesión</button>
+                        </div>
 
-                    <div class="otras-opciones">
-                        <a href="{{ route('registro') }}" class="boton__entrada__sombra">Crear cuenta</a>
-                        <a href="{{ route('home') }}" class="boton__entrada__sombra">Entrar como invitado</a>
+                        <div class="otras-opciones">
+                            <a href="{{ route('registro') }}" class="boton__entrada__sombra">Crear cuenta</a>
+                            <a href="{{ route('home') }}" class="boton__entrada__sombra">Entrar como invitado</a>
+                        </div>
                     </div>
                 </form>
             </div>
