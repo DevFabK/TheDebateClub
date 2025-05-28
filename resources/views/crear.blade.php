@@ -97,8 +97,11 @@
                 </div>
 
                 <textarea name="texto-usuario" id="texto-usuario">{{ old('texto-usuario') }}</textarea>
-                <button type="button" class="publicar" id="volver" style="background-color: #dc3545">VOLVER</button>
-                <button type="submit" class="publicar" value="Publicar" id="enviar">PUBLICAR</button>
+                <div class="botones">
+                    <button type="button" class="publicar" id="volver"
+                        style="background-color: #dc3545">VOLVER</button>
+                    <button type="submit" class="publicar" value="Publicar" id="enviar">PUBLICAR</button>
+                </div>
 
 
                 @if ($errors->any())
