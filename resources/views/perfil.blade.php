@@ -14,7 +14,7 @@
             @php
                 $src = $user->foto_perfil
                     ? asset('storage/' . $user->foto_perfil)
-                    : asset('storage/fotos_perfil/default.jpg');
+                    : 'https://i.postimg.cc/kG6VYPZ7/default.jpg';
             @endphp
 
             <img src="{{ $src }}" alt="Foto de perfil" class="foto-perfil">
