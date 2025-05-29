@@ -22,8 +22,8 @@ class RegistroController extends Controller
     {
         // Validación con mensajes personalizados
         $request->validate([
-            'nombre' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+            'nombre' => 'required|string|max:30',
+            'email' => 'required|string|email|max:60|unique:users',
             'password' => 'required|string|min:8|confirmed',
         ], [
             'nombre.required' => 'El nombre es obligatorio.',
