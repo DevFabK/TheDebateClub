@@ -22,12 +22,13 @@ class LoginController extends Controller
         // Validación con mensajes personalizados
         $request->validate([
             'nombre' => 'required|string|max:30',
-            'password' => 'required|string|min:8',
+            'password' => 'required|string|min:8|max:30',
         ], [
             'nombre.required' => 'El nombre de usuario es obligatorio.',
             'nombre.max' => 'El maximo de carácteres son 30.',
             'password.required' => 'La contraseña es obligatoria.',
             'password.min' => 'La contraseña debe tener al menos 8 caracteres.',
+            'password.max' => 'El maximo de carácteres para la contraseña son 30.',
         ]);
 
         // Buscar usuario por nombre

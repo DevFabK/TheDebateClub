@@ -24,7 +24,7 @@ class RegistroController extends Controller
         $request->validate([
             'nombre' => 'required|string|max:30',
             'email' => 'required|string|email|max:60|unique:users',
-            'password' => 'required|string|min:8|confirmed',
+            'password' => 'required|string|min:8|max:30|confirmed',
         ], [
             'nombre.required' => 'El nombre es obligatorio.',
             'nombre.max' => 'El maximo de carácteres para el nombre son 30.',
@@ -35,6 +35,7 @@ class RegistroController extends Controller
             'password.required' => 'La contraseña es obligatoria.',
             'password.min' => 'La contraseña debe tener al menos 8 caracteres.',
             'password.confirmed' => 'Las contraseñas no coinciden.',
+            'password.max' => 'El maximo de carácteres para la contraseña son 30.',
         ]);
 
         // Crear usuario
