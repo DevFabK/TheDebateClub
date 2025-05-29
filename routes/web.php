@@ -51,9 +51,7 @@ Route::get('/crear', [PublicarController::class, 'mostrarPanelCrear'])->middlewa
 Route::post('/crear', [PublicarController::class, 'post'])->middleware('auth')->name('crear.post');
 
 // Ver un tema 
-Route::get('/tema/{id}', [TemaController::class, 'ver'])
-    ->middleware('auth')
-    ->name('tema.ver');
+Route::get('/tema/{id}', [TemaController::class, 'ver'])->name('tema.ver');
 
 // Funcion de las estrellas
 Route::get('/estrellas', [ArgumentoController::class, 'estrellas'])->name('estrellas');
