@@ -173,7 +173,6 @@
 /* Etiquetas con data-label */
 .titulo-tema::before,
 .debates-container::before,
-.debate-titulo::before,
 .argumentos-lista::before,
 .sin-argumentos::before {
     content: attr(data-label);
