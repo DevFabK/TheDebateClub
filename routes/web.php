@@ -9,8 +9,9 @@ use App\Http\Controllers\DebateController;
 use App\Http\Controllers\BuscadorTemasController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ArgumentoController;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\PublicarController;
+use App\Http\Controllers\AdminController;
+use Illuminate\Support\Facades\Auth;
 
 // PRIMERA PAGINA (LOGIN)
 Route::get('/', [LoginController::class, 'mostrarFormularioLogin']);
@@ -65,3 +66,5 @@ Route::get('/perfil/editar', [ProfileController::class, 'mostrarPerfil'])->name(
 Route::put('/perfil/editar', [ProfileController::class, 'update'])->name('perfil.update');
 
 Route::get('/debate/{id}', [DebateController::class, 'mostrar'])->name('debate');
+
+Route::get('/admin', [AdminController::class, 'panel'])->name('panel');
