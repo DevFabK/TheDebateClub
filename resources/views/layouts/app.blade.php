@@ -10,6 +10,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link href="{{ asset('css/header.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/footer.css') }}" rel="stylesheet" />
+    <link rel="icon" href="{{ asset('favicon.svg') }}" type="image/svg+xml">
     <link href="{{ asset('css/estilos-home.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/fondo-general.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/estilos-crear.css') }}" rel="stylesheet" />

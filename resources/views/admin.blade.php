@@ -68,8 +68,14 @@
                                         class="input-puntos" style="display:none;">
                                 </td>
                                 <td>
-                                    <img src="{{ $user->foto_perfil ? asset('storage/' . $user->foto_perfil) : asset('storage/fotos_perfil/default.jpg') }}"
-                                        width="40" height="40" class="perfil-img" />
+                                    @php
+                                        $src = $user->foto_perfil
+                                            ? asset('storage/' . $user->foto_perfil)
+                                            : 'https://i.postimg.cc/kG6VYPZ7/default.jpg';
+                                    @endphp
+
+                                    <img src="{{ $src }}" alt="Foto de perfil" width="40" height="40"
+                                        class="perfil-img">
                                     <input type="file" name="foto_perfil" style="display:none;" class="input-foto">
                                 </td>
                                 <td>

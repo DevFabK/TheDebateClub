@@ -126,6 +126,10 @@ body {
     font-size: 1rem;
 }
 
+.atras-perfil:hover {
+    background-color: #1a4df4;
+}
+
 .nombre-y-puntos {
     display: flex;
     align-items: center;
