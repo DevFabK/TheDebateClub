@@ -67,4 +67,12 @@ Route::put('/perfil/editar', [ProfileController::class, 'update'])->name('perfil
 
 Route::get('/debate/{id}', [DebateController::class, 'mostrar'])->name('debate');
 
+// PANEL DE ADMIN
 Route::get('/admin', [AdminController::class, 'panel'])->name('panel');
+
+// Editar un usuario desde el panel de admin
+Route::get('/admin/usuarios/{user}/editar', [AdminController::class, 'editarUsuario'])->name('admin.usuarios.editar');
+Route::put('/admin/usuarios/{user}', [AdminController::class, 'actualizarUsuario'])->name('admin.usuarios.actualizar');
+
+// Eliminar un usuario desde el panel de admin
+Route::delete('/admin/usuarios/{user}', [AdminController::class, 'eliminarUsuario'])->name('admin.usuarios.eliminar');

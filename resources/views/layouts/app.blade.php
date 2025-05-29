@@ -14,6 +14,7 @@
     <link href="{{ asset('css/fondo-general.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/estilos-crear.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/estilos-tema.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/estilos-panel-admin.css') }}" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('css/layout-principal.css') }} ">
 
     @yield('styles')
