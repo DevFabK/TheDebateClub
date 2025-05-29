@@ -9,7 +9,7 @@
 @section('content')
 
     <div class="contenido-perfil">
-        <div class="info-personal" data-label="Temas en los que has participado: ">
+        <div class="info-personal" data-label="Informacion: ">
 
             @php
                 $src = $user->foto_perfil
