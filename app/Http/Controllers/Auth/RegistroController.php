@@ -27,8 +27,9 @@ class RegistroController extends Controller
             'password' => 'required|string|min:8|confirmed',
         ], [
             'nombre.required' => 'El nombre es obligatorio.',
-            'nombre.max' => 'El maximo de carácteres son 30.',
+            'nombre.max' => 'El maximo de carácteres para el nombre son 30.',
             'email.required' => 'El email es obligatorio.',
+            'email.max' => 'El maximo de carácteres para el email es de 60.',
             'email.email' => 'Introduce un email válido.',
             'email.unique' => 'Este email ya está registrado.',
             'password.required' => 'La contraseña es obligatoria.',
