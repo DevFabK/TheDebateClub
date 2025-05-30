@@ -24,13 +24,15 @@ class PublicarController extends Controller
         if ($eleccion === 'debate') {
             $datosValidados = $request->validate([
                 'eleccion' => 'required|in:debate,argumento',
-                'texto-usuario' => 'required|max:255',
-                'titulo-debate' => 'required|string|max:255',
+                'texto-usuario' => 'required|max:255|min:10',
+                'titulo-debate' => 'required|string|max:255|min:3',
                 'tema_id' => 'required|exists:temas_debates,id',
             ], [
                 'eleccion.required' => 'Selecciona qué quieres crear.',
                 'texto-usuario.required' => 'Has de rellenar la caja de texto.',
                 'texto-usuario.max' => 'Solo puedes escribir 255 carácteres.',
+                'texto-usuario.min' => 'Has de escribir como minimo 10 carácteres.',
+                'titulo-debate.min' => 'Has de escribir como minimo 3 carácteres.',
                 'titulo-debate.required' => 'Has de ponerle un nombre al debate.',
                 'tema_id.required' => 'Es necesario que elijas un tema para el debate.',
             ]);
@@ -46,12 +48,13 @@ class PublicarController extends Controller
         } elseif ($eleccion === 'argumento') {
             $datosValidados = $request->validate([
                 'eleccion' => 'required|in:debate,argumento',
-                'texto-usuario' => 'required|max:255',
+                'texto-usuario' => 'required|max:255|min:10',
                 'debate_id' => 'required|exists:debates,id',
             ], [
                 'eleccion.required' => 'Selecciona qué quieres crear.',
                 'texto-usuario.required' => 'Has de rellenar la caja de texto.',
                 'texto-usuario.max' => 'Solo puedes escribir 255 carácteres.',
+                'texto-usuario.min' => 'Has de escribir como minimo 10 carácteres.',
                 'debate_id.required' => 'Has de seleccionar un debate al que añadir el argumento.',
             ]);
 
@@ -59,7 +62,7 @@ class PublicarController extends Controller
             $argumento->contenido = $datosValidados['texto-usuario'];
             $argumento->debate_id = $datosValidados['debate_id'];
             $argumento->usuario_id = Auth::id();
-            $argumento->postura = $request->input('postura', 'Neutral'); 
+            $argumento->postura = $request->input('postura', 'Neutral');
 
             $argumento->save();
 
@@ -67,18 +70,21 @@ class PublicarController extends Controller
         } elseif ($eleccion === 'tema') {
             $datosValidados = $request->validate([
                 'eleccion' => 'required|in:debate,argumento,tema',
-                'texto-usuario' => 'required|max:255',   
-                'titulo-tema' => 'required|string|max:255',
+                'texto-usuario' => 'required|max:255|min:10',
+                'titulo-tema' => 'required|string|max:255|min:3',
             ], [
                 'eleccion.required' => 'Selecciona qué quieres crear.',
                 'texto-usuario.required' => 'Has de rellenar la caja de texto.',
                 'texto-usuario.max' => 'Solo puedes escribir 255 carácteres.',
+                'texto-usuario.min' => 'Has de escribir como minimo 10 carácteres.',
                 'titulo-tema.required' => 'Has de ponerle un nombre al tema.',
+                'titulo-tema.min' => 'Has de escribir como minimo 3 carácteres.',
+                'titulo-tema.max' => 'Solo puedes escribir hasta 255 carácteres.',
             ]);
 
             $tema = new Tema();
             $tema->titulo = $datosValidados['titulo-tema'];
-            $tema->descripcion = $datosValidados['texto-usuario'];  
+            $tema->descripcion = $datosValidados['texto-usuario'];
             $tema->usuario_id = Auth::id();
             $tema->save();
 
