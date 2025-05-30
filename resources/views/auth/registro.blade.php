@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TDC - Registro</title>
-
+    <link rel="icon" href="{{ asset('favicon.svg') }}" type="image/svg+xml">
     <!-- Estilos específicos para registro -->
     <link href="{{ asset('css/fondo-formularios.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/estilos-formularios.css') }}" rel="stylesheet" />
