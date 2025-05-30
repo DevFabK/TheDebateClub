@@ -123,40 +123,41 @@
         const argumentoWrapper = document.getElementById("argumento-wrapper");
         const temaWrapper = document.getElementById("tema-wrapper");
 
-        // Colores de las posturas 
         const colores = [
-            "#00ff00", // Verde 
-            "#66cc66", // Verde apagado
-            "#282828", // Gris diferente a #777
-            "#cc6666", // Rojo apagado
-            "#ff0000" // Rojo 
+            "#00ff00", // A favor
+            "#66cc66", // Parcialmente a favor
+            "#282828", // Neutral
+            "#cc6666", // Parcialmente en contra
+            "#ff0000" // En contra
         ];
 
-        const coloresFondo = [
-            "#ccffcc", // Fondo verde claro
-            "#e6f2e6", // Fondo verde más apagado
-            "#dddddd", // Fondo gris claro
-            "#f2dede", // Fondo rojo apagado
-            "#ffcccc" // Fondo rojo
+        const posturas = [
+            "A favor",
+            "Parcialmente a favor",
+            "Neutral",
+            "Parcialmente en contra",
+            "En contra"
         ];
 
         const svgs = document.querySelectorAll('.iconos-postura svg');
+        const posturaInput = document.getElementById('postura-input');
 
         svgs.forEach((svg, index) => {
             svg.addEventListener('click', () => {
+                // Quitar clase 'activo' y resetear color
                 svgs.forEach(s => {
                     const path = s.querySelector('path');
                     path.setAttribute('stroke', '#777');
-                    s.style.backgroundColor = 'transparent';
+                    s.classList.remove('activo');
                 });
 
+                // Marcar el actual como activo
+                svg.classList.add('activo');
                 const path = svg.querySelector('path');
                 path.setAttribute('stroke', colores[index]);
-                svg.style.backgroundColor = coloresFondo[index];
-                const posturas = ['A favor', 'Parcialmente a favor', 'Neutral', 'Parcialmente en contra',
-                    'En contra'
-                ];
-                document.getElementById('postura-input').value = posturas[index];
+
+                // Guardar postura seleccionada
+                posturaInput.value = posturas[index];
                 console.log(posturas[index]);
             });
         });

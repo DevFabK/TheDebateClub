@@ -48,7 +48,7 @@ main {
         width: calc(100% - 20px);
     }
 
-    .titulo-crear{
+    .titulo-crear {
         margin: 0 auto;
     }
 
@@ -91,7 +91,7 @@ main {
         margin-bottom: 20px;
         transform: rotate(-0.5deg);
     }
-    
+
     .titulo-crear h2 {
         font-size: 24px;
     }
@@ -101,7 +101,7 @@ main {
     .titulo-crear {
         padding: 0 15px;
     }
-    
+
     .titulo-crear h2 {
         font-size: 20px;
     }
@@ -149,7 +149,7 @@ main {
     .seleccion-wrapper {
         max-width: 100%;
     }
-    
+
     .seleccion-wrapper select {
         padding: 12px 15px;
         font-size: 16px;
@@ -192,7 +192,7 @@ main {
         flex-direction: column;
         gap: 15px;
     }
-    
+
     #tema-wrapper {
         flex-direction: column;
         gap: 10px;
@@ -248,13 +248,14 @@ main {
 }
 
 @media (max-width: 768px) {
+
     #tema_id,
     #debate_id {
         max-width: 100%;
         min-width: auto;
         width: 100%;
     }
-    
+
     #titulo-debate,
     .titulo-tema {
         max-width: 100%;
@@ -346,12 +347,18 @@ main {
 }
 
 .iconos-postura svg {
-    transition: transform 0.2s ease;
+    stroke: #777;
+    fill: none;
+    transition: transform 0.2s ease, stroke 0.2s ease;
 }
 
-.iconos-postura svg:hover {
-    transform: translateY(-5%) scale(1.2);
+.iconos-postura svg:not(.activo):hover {
+    transform: scale(1.3);
     cursor: pointer;
+}
+
+.iconos-postura svg.activo {
+    transform: scale(1.2);
 }
 
 @media (max-width: 768px) {
@@ -360,11 +367,11 @@ main {
         padding: 8px 12px;
         box-shadow: 3px 3px 0 #000, 6px 6px 0 #385cd1;
     }
-    
+
     .postura img {
         width: 24px;
     }
-    
+
     .iconos-postura {
         gap: 10px;
     }
@@ -418,7 +425,7 @@ main {
         width: 100%;
         max-width: 300px;
     }
-    
+
     .input {
         width: 100%;
         font-size: 16px;
@@ -484,9 +491,12 @@ option {
 
 /* Keyframes para animaciones */
 @keyframes focus-pulse {
-    0%, 100% {
+
+    0%,
+    100% {
         border-color: #000;
     }
+
     50% {
         border-color: #1a4df4db;
     }
@@ -496,33 +506,43 @@ option {
     0% {
         clip-path: inset(0 100% 0 0);
     }
+
     10% {
         clip-path: inset(0 5% 0 0);
     }
+
     20% {
         clip-path: inset(0 80% 0 0);
     }
+
     30% {
         clip-path: inset(0 10% 0 0);
     }
+
     40% {
         clip-path: inset(0 50% 0 0);
     }
+
     50% {
         clip-path: inset(0 30% 0 0);
     }
+
     60% {
         clip-path: inset(0 70% 0 0);
     }
+
     70% {
         clip-path: inset(0 15% 0 0);
     }
+
     80% {
         clip-path: inset(0 90% 0 0);
     }
+
     90% {
         clip-path: inset(0 5% 0 0);
     }
+
     100% {
         clip-path: inset(0 100% 0 0);
     }
