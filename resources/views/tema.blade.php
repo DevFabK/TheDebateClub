@@ -34,22 +34,26 @@
                                 <div class="argumentos-lista" data-label="Argumentos">
                                     @foreach ($debate->argumentos as $argumento)
                                         <div class="argumento-item 
-                                            @if ($argumento->postura == 'A favor') argumento-favor 
-                                            @elseif($argumento->postura === 'En contra') argumento-contra 
-                                            @elseif($argumento->postura == 'Parcialmente en contra') argumento-parcial-contra
-                                            @elseif($argumento->postura == 'Parcialmente a favor') argumento-parcial-favor
-                                            @else argumento-neutra @endif"
+        @if ($argumento->postura == 'A favor') argumento-favor 
+        @elseif($argumento->postura === 'En contra') argumento-contra 
+        @elseif($argumento->postura == 'Parcialmente en contra') argumento-parcial-contra
+        @elseif($argumento->postura == 'Parcialmente a favor') argumento-parcial-favor
+        @else argumento-neutra @endif"
                                             id="argumento-{{ $argumento->id }}"
                                             data-numero="{{ $argumento->usuario->nombre }}">
-                                            <div class="argumento-contenido" id="argumento-contenido-{{ $argumento->id }}">
-                                                {{ $argumento->contenido }}
-                                                <br>
-                                                <strong>{{ $argumento->postura }}</strong>
-                                                <br>
+
+                                            <div class="argumento-contenido contenido-argumento"
+                                                id="argumento-contenido-{{ $argumento->id }}"
+                                                data-contenido="{{ e($argumento->contenido) }}">
+
+                                                <div class="argumento-postura">
+                                                    <strong>{{ $argumento->postura }}</strong>
+                                                </div>
+
                                             </div>
                                         </div>
                                     @endforeach
-                                </div> 
+                                </div>
                             @endif
                         </div>
                     </div>
