@@ -68,9 +68,22 @@ Route::get('/debate/{id}', [DebateController::class, 'mostrar'])->name('debate')
 // PANEL DE ADMIN
 Route::get('/admin', [AdminController::class, 'panel'])->name('panel');
 
-// Editar un usuario desde el panel de admin
+// USUARIOS (panel de administración)
 Route::get('/admin/usuarios/{user}/editar', [AdminController::class, 'editarUsuario'])->name('admin.usuarios.editar');
 Route::put('/admin/usuarios/{user}', [AdminController::class, 'actualizarUsuario'])->name('admin.usuarios.actualizar');
-
-// Eliminar un usuario desde el panel de admin
 Route::delete('/admin/usuarios/{user}', [AdminController::class, 'eliminarUsuario'])->name('admin.usuarios.eliminar');
+
+// TEMAS (panel de administración)
+Route::get('/admin/temas', [AdminController::class, 'temas'])->name('admin.temas.index');
+Route::put('/admin/temas/{tema}', [AdminController::class, 'actualizarTema'])->name('admin.temas.actualizar');
+Route::delete('/admin/temas/{tema}', [AdminController::class, 'eliminarTema'])->name('admin.temas.eliminar');
+
+// DEBATES (panel de administración)
+Route::get('/admin/debates', [AdminController::class, 'debates'])->name('admin.debates.index');
+Route::put('/admin/debates/{debate}', [AdminController::class, 'actualizarDebate'])->name('admin.debates.actualizar');
+Route::delete('/admin/debates/{debate}', [AdminController::class, 'eliminarDebate'])->name('admin.debates.eliminar');
+
+// ARGUMENTOS (panel de administración)
+Route::get('/admin/argumentos', [AdminController::class, 'argumentos'])->name('admin.argumentos.index');
+Route::put('/admin/argumentos/{argumento}', [AdminController::class, 'actualizarArgumento'])->name('admin.argumentos.actualizar');
+Route::delete('/admin/argumentos/{argumento}', [AdminController::class, 'eliminarArgumento'])->name('admin.argumentos.eliminar');

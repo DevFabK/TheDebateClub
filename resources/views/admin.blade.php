@@ -12,7 +12,9 @@
         <!-- Navegación de pestañas -->
         <div class="admin-tabs">
             <button class="tab-button active" data-tab="usuarios">Usuarios</button>
-            {{-- Aquí se añadirán más botones para otras pestañas --}}
+            <button class="tab-button" data-tab="temas">Temas</button>
+            <button class="tab-button" data-tab="debates">Debates</button>
+            <button class="tab-button" data-tab="argumentos">Argumentos</button>
         </div>
 
         <!-- Contenido de pestañas -->
@@ -100,20 +102,245 @@
                     @endforeach
                 </tbody>
             </table>
-            <div id="modal-eliminar" class="modal" style="display:none;">
-                <div class="modal-content">
-                    <p id="mensaje-eliminar"></p>
-                    <div class="modal-buttons">
-                        <button id="btn-confirmar-eliminar" class="btn-eliminar">Eliminar</button>
-                        <button id="btn-cancelar-eliminar" class="btn-cancelar">Cancelar</button>
-                    </div>
-                </div>
+        </div>
+
+        <!-- TEMAS -->
+
+        <div class="admin-tab-content" id="temas" style="display: none;">
+            <h3>Temas de debate</h3>
+
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Título</th>
+                        <th>Descripción</th>
+                        <th>Creado por</th>
+                        <th>Acciones</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($temas as $tema)
+                        <tr>
+                            <form method="POST" action="{{ route('admin.temas.actualizar', $tema) }}" class="editar-form">
+                                @csrf
+                                @method('PUT')
+
+                                <td>{{ $tema->id }}</td>
+                                <td>
+                                    <span class="texto-titulo">{{ $tema->titulo }}</span>
+                                    <input type="text" name="titulo" value="{{ $tema->titulo }}" style="display:none;">
+                                </td>
+                                <td>
+                                    <span class="texto-descripcion">{{ $tema->descripcion }}</span>
+                                    <input type="text" name="descripcion" value="{{ $tema->descripcion }}"
+                                        style="display: none;">
+                                </td>
+                                <td>
+                                    {{ $tema->usuario->nombre ?? 'Desconocido' }}
+                                </td>
+                                <td>
+                                    <!-- Botones edición -->
+                                    <button type="button" class="btn-edit" onclick="activarEdicion(this)">Editar</button>
+                                    <button type="submit" class="btn-save" style="display:none;">Guardar</button>
+                                    <button type="button" class="btn-cancel" style="display:none;"
+                                        onclick="cancelarEdicion(this)">Cancelar</button>
+                                </td>
+                            </form>
+                            <td>
+                                <!-- Formulario separado para eliminar -->
+                                <form method="POST" action="{{ route('admin.temas.eliminar', $tema) }}"
+                                    class="form-eliminar">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn-delete"
+                                        data-nombre="{{ $tema->titulo }}">Eliminar</button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+
+        <!-- DEBATES -->
+
+        <div class="admin-tab-content" id="debates" style="display: none;">
+            <h3>Debates</h3>
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Título</th>
+                        <th>Usuario</th>
+                        <th>Tema</th>
+                        <th>Descripción</th>
+                        <th>Acciones</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($debates as $debate)
+                        <tr>
+                            <form method="POST" action="{{ route('admin.debates.actualizar', $debate) }}"
+                                class="editar-form">
+                                @csrf
+                                @method('PUT')
+
+                                <td>{{ $debate->id }}</td>
+
+                                <td>
+                                    <span class="texto-titulo">{{ $debate->titulo }}</span>
+                                    <input type="text" name="titulo" value="{{ $debate->titulo }}"
+                                        style="display:none; width: 90%;">
+                                </td>
+
+                                <td>
+                                    <span class="texto-usuario">{{ $debate->usuario->nombre ?? 'Desconocido' }}</span>
+                                    <select name="usuario_id" style="display:none; width: 90%;">
+                                        <option value="">-- Sin usuario --</option>
+                                        @foreach ($usuarios as $usuario)
+                                            <option value="{{ $usuario->id }}"
+                                                @if ($debate->usuario_id == $usuario->id) selected @endif>{{ $usuario->nombre }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </td>
+
+                                <td>
+                                    <span class="texto-tema">{{ $debate->tema->titulo ?? 'Desconocido' }}</span>
+                                    <select name="tema_id" style="display:none; width: 90%;">
+                                        @foreach ($temas as $tema)
+                                            <option value="{{ $tema->id }}"
+                                                @if ($debate->tema_id == $tema->id) selected @endif>{{ $tema->titulo }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </td>
+
+                                <td>
+                                    <span class="texto-descripcion">{{ $debate->descripcion }}</span>
+                                    <input type="text" name="descripcion" value="{{ $debate->descripcion }}"
+                                        style="display:none; width: 90%;">
+                                </td>
+
+                                <td>
+                                    <!-- Botones edición -->
+                                    <button type="button" class="btn-edit"
+                                        onclick="activarEdicion(this)">Editar</button>
+                                    <button type="submit" class="btn-save" style="display:none;">Guardar</button>
+                                    <button type="button" class="btn-cancel" style="display:none;"
+                                        onclick="cancelarEdicion(this)">Cancelar</button>
+                                </td>
+                            </form>
+
+                            <td>
+                                <!-- Formulario separado para eliminar -->
+                                <form method="POST" action="{{ route('admin.debates.eliminar', $debate) }}"
+                                    class="form-eliminar">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn-delete"
+                                        data-nombre="{{ $debate->titulo }}">Eliminar</button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+
+        <!-- ARGUMENTOS -->
+
+        <div class="admin-tab-content" id="argumentos" style="display: none;">
+            <h3>Argumentos</h3>
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Contenido</th>
+                        <th>Postura</th>
+                        <th>Debate</th>
+                        <th>Usuario</th>
+                        <th>Acciones</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @php
+                        use Illuminate\Support\Str;
+                    @endphp
+
+                    @foreach ($argumentos as $argumento)
+                        <tr>
+                            <form method="POST" action="{{ route('admin.argumentos.actualizar', $argumento) }}"
+                                class="editar-form">
+                                @csrf
+                                @method('PUT')
+                                <td>{{ $argumento->id }}</td>
+                                <td>
+                                    <div class="contenido-argumento" data-contenido="{{ e($argumento->contenido) }}">
+                                    </div>
+                                    <input type="text" name="contenido" style="display:none; width: 90%;"
+                                        value="{{ $argumento->contenido }}">
+                                </td>
+                                <td>
+                                    <span class="texto-postura">{{ $argumento->postura }}</span>
+                                    <select name="postura" style="display:none;">
+                                        <option value="A favor" {{ $argumento->postura === 'A favor' ? 'selected' : '' }}>
+                                            A favor</option>
+                                        <option value="Parcialmente a favor"
+                                            {{ $argumento->postura === 'Parcialmente a favor' ? 'selected' : '' }}>
+                                            Parcialmente a favor</option>
+                                        <option value="Neutral" {{ $argumento->postura === 'Neutral' ? 'selected' : '' }}>
+                                            Neutral</option>
+                                        <option value="Parcialmente en contra"
+                                            {{ $argumento->postura === 'Parcialmente en contra' ? 'selected' : '' }}>
+                                            Parcialmente en contra</option>
+                                        <option value="En contra"
+                                            {{ $argumento->postura === 'En contra' ? 'selected' : '' }}>En contra</option>
+                                    </select>
+                                </td>
+                                <td>{{ $argumento->debate->titulo ?? 'Desconocido' }}</td>
+                                <td>{{ $argumento->usuario->nombre ?? 'Desconocido' }}</td>
+                                <td>
+                                    <button type="button" class="btn-edit"
+                                        onclick="activarEdicion(this)">Editar</button>
+                                    <button type="submit" class="btn-save" style="display:none;">Guardar</button>
+                                    <button type="button" class="btn-cancel" style="display:none;"
+                                        onclick="cancelarEdicion(this)">Cancelar</button>
+                                </td>
+                            </form>
+                            <td>
+                                <form method="POST" action="{{ route('admin.argumentos.eliminar', $argumento) }}"
+                                    class="form-eliminar">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn-delete"
+                                        data-nombre="argumento ID {{ $argumento->id }}">Eliminar</button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="modal-eliminar" class="modal" style="display:none;">
+        <div class="modal-content">
+            <p id="mensaje-eliminar"></p>
+            <div class="modal-buttons">
+                <button id="btn-confirmar-eliminar" class="btn-eliminar">Eliminar</button>
+                <button id="btn-cancelar-eliminar" class="btn-cancelar">Cancelar</button>
             </div>
         </div>
     </div>
 @endsection
 
 @section('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script>
         // Control de pestañas
         const tabs = document.querySelectorAll('.tab-button');
@@ -136,63 +363,71 @@
         function activarEdicion(button) {
             const fila = button.closest('tr');
 
-            // Ocultar spans y mostrar inputs/selects
-            fila.querySelectorAll('span').forEach(span => span.style.display = 'none');
-            fila.querySelectorAll('input, select').forEach(el => el.style.display = 'inline-block');
+            // Ocultar contenido parseado
+            fila.querySelectorAll('.contenido-argumento').forEach(div => div.style.display = 'none');
 
-            // Mostrar botones de guardar/cancelar
-            fila.querySelector('.btn-edit').style.display = 'none';
-            fila.querySelector('.btn-save').style.display = 'inline-block';
-            fila.querySelector('.btn-cancel').style.display = 'inline-block';
+            // Mostrar input para editar contenido
+            fila.querySelectorAll('input[name="contenido"]').forEach(input => input.style.display = 'inline-block');
+
+            // Ocultar texto postura y mostrar select
+            fila.querySelectorAll('.texto-postura').forEach(span => span.style.display = 'none');
+            fila.querySelectorAll('select[name="postura"]').forEach(select => select.style.display = 'inline-block');
+
+            // Mostrar/ocultar botones
+            button.style.display = 'none'; // botón editar
+            fila.querySelector('.btn-save').style.display = 'inline-block'; // botón guardar
+            fila.querySelector('.btn-cancel').style.display = 'inline-block'; // botón cancelar
         }
 
-        // Cancelar edición y restaurar valores originales
         function cancelarEdicion(button) {
             const fila = button.closest('tr');
 
-            // Restaurar valores de los inputs
-            fila.querySelectorAll('input').forEach(input => {
-                const span = fila.querySelector('.texto-' + input.name);
-                if (span) input.value = span.innerText.trim();
-                input.style.display = 'none';
-            });
+            // Mostrar contenido parseado
+            fila.querySelectorAll('.contenido-argumento').forEach(div => div.style.display = 'block');
 
-            // Restaurar selects
-            fila.querySelectorAll('select').forEach(select => {
-                const span = fila.querySelector('.texto-' + select.name);
-                const valorOriginal = span?.dataset.value;
-                if (valorOriginal !== undefined) {
-                    select.value = valorOriginal;
-                }
-                select.style.display = 'none';
-            });
+            // Ocultar input para editar contenido
+            fila.querySelectorAll('input[name="contenido"]').forEach(input => input.style.display = 'none');
 
-            // Mostrar los spans nuevamente
-            fila.querySelectorAll('span').forEach(span => span.style.display = 'inline');
+            // Mostrar texto postura y ocultar select
+            fila.querySelectorAll('.texto-postura').forEach(span => span.style.display = 'inline');
+            fila.querySelectorAll('select[name="postura"]').forEach(select => select.style.display = 'none');
 
-            // Restaurar botones
-            fila.querySelector('.btn-edit').style.display = 'inline-block';
-            fila.querySelector('.btn-save').style.display = 'none';
-            fila.querySelector('.btn-cancel').style.display = 'none';
+            // Mostrar/ocultar botones
+            fila.querySelector('.btn-edit').style.display = 'inline-block'; // botón editar
+            fila.querySelector('.btn-save').style.display = 'none'; // botón guardar
+            button.style.display = 'none'; // botón cancelar
+
+            // Opcional: Resetear valor del input a contenido original si quieres
+            const contenidoOriginal = fila.querySelector('.contenido-argumento').dataset.contenido;
+            fila.querySelector('input[name="contenido"]').value = contenidoOriginal;
         }
 
         document.addEventListener('DOMContentLoaded', () => {
+            // Mostrar pestaña según hash en URL
+            const hash = window.location.hash;
+            if (hash) {
+                const targetTab = document.querySelector(`.tab-button[data-tab="${hash.substring(1)}"]`);
+                if (targetTab) {
+                    targetTab.click();
+                }
+            }
+
             const modal = document.getElementById('modal-eliminar');
             const mensaje = document.getElementById('mensaje-eliminar');
             const btnConfirmar = document.getElementById('btn-confirmar-eliminar');
             const btnCancelar = document.getElementById('btn-cancelar-eliminar');
             let formularioAEliminar = null;
 
+            // Evento para formularios de eliminación (usuarios, temas, etc)
             document.querySelectorAll('.form-eliminar').forEach(form => {
                 form.addEventListener('submit', function(e) {
                     e.preventDefault();
 
                     formularioAEliminar = this;
-                    const nombreUsuario = this.querySelector('button[type="submit"]').dataset
-                        .nombre;
+                    const nombre = this.querySelector('button[type="submit"]').dataset.nombre;
 
                     mensaje.innerHTML =
-                        `Estás a punto de eliminar al usuario <strong style="text-decoration: underline dotted; text-decoration-offset: 10px;">${nombreUsuario}</strong>. Esta acción es <strong style="color: #ea2b24; text-decoration: underline;">irreversible</strong>. ¿Estás seguro de que quieres hacerlo?`
+                        `Estás a punto de eliminar <strong style="text-decoration: underline dotted; text-decoration-offset: 10px;">${nombre}</strong>. Esta acción es <strong style="color: #ea2b24; text-decoration: underline;">irreversible</strong>. ¿Estás seguro de que quieres hacerlo?`;
 
                     modal.style.display = 'flex';
                 });
@@ -216,5 +451,18 @@
                 }
             });
         });
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.contenido-argumento').forEach(div => {
+                const markdown = div.dataset.contenido;
+                div.innerHTML = marked.parse(markdown);
+            });
+        });
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.contenido-argumento').forEach(div => {
+                const markdown = div.dataset.contenido;
+                div.innerHTML = marked.parse(markdown);
+            });
+        });
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 @endsection

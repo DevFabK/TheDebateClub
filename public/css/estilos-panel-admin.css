@@ -187,3 +187,10 @@
 .btn-cancelar:hover {
     background-color: #44494d;
 }
+
+.admin-table input[type="text"],
+.admin-table input[type="email"],
+.admin-table input[type="password"] {
+    width: 90%;
+    box-sizing: border-box;
+}
