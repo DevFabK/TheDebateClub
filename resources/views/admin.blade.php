@@ -280,7 +280,7 @@
                                 @method('PUT')
                                 <td>{{ $argumento->id }}</td>
                                 <td>
-                                    <div class="contenido-argumento" data-contenido="{{ e($argumento->contenido) }}">
+                                    <div class="contenido-argumento-admin" data-contenido="{{ e($argumento->contenido) }}">
                                     </div>
                                     <input type="text" name="contenido" style="display:none; width: 90%;"
                                         value="{{ $argumento->contenido }}">
@@ -364,7 +364,7 @@
             const fila = button.closest('tr');
 
             // Ocultar contenido parseado
-            fila.querySelectorAll('.contenido-argumento').forEach(div => div.style.display = 'none');
+            fila.querySelectorAll('.contenido-argumento-admin').forEach(div => div.style.display = 'none');
 
             // Mostrar input para editar contenido
             fila.querySelectorAll('input[name="contenido"]').forEach(input => input.style.display = 'inline-block');
@@ -383,7 +383,7 @@
             const fila = button.closest('tr');
 
             // Mostrar contenido parseado
-            fila.querySelectorAll('.contenido-argumento').forEach(div => div.style.display = 'block');
+            fila.querySelectorAll('.contenido-argumento-admin').forEach(div => div.style.display = 'block');
 
             // Ocultar input para editar contenido
             fila.querySelectorAll('input[name="contenido"]').forEach(input => input.style.display = 'none');
@@ -398,7 +398,7 @@
             button.style.display = 'none'; // botón cancelar
 
             // Opcional: Resetear valor del input a contenido original si quieres
-            const contenidoOriginal = fila.querySelector('.contenido-argumento').dataset.contenido;
+            const contenidoOriginal = fila.querySelector('.contenido-argumento-admin').dataset.contenido;
             fila.querySelector('input[name="contenido"]').value = contenidoOriginal;
         }
 
@@ -452,13 +452,13 @@
             });
         });
         document.addEventListener('DOMContentLoaded', () => {
-            document.querySelectorAll('.contenido-argumento').forEach(div => {
+            document.querySelectorAll('.contenido-argumento-admin').forEach(div => {
                 const markdown = div.dataset.contenido;
                 div.innerHTML = marked.parse(markdown);
             });
         });
         document.addEventListener('DOMContentLoaded', () => {
-            document.querySelectorAll('.contenido-argumento').forEach(div => {
+            document.querySelectorAll('.contenido-argumento-admin').forEach(div => {
                 const markdown = div.dataset.contenido;
                 div.innerHTML = marked.parse(markdown);
             });
