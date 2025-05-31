@@ -1,83 +1,70 @@
 @extends('layouts.app')
 
-@section('title', 'Tema')
+@section('title', 'Debate')
 
 @section('styles')
     <link href="{{ asset('css/estilos-tema.css') }}" rel="stylesheet" />
 @endsection
 
 @section('content')
-    <!-- Agregar token CSRF para las peticiones AJAX -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <div class="contenido-tema">
         <div class="titulo-tema" data-label="Tema Principal">
-            <h1>{{ $tema->titulo }}</h1>
+            <h1>{{ $debate->tema->titulo }}</h1>
         </div>
 
-        <div class="debates-container" data-label="Debates del tema">
-            @if ($tema->debates->isEmpty())
-                <p>No hay debates para este tema.</p>
-            @else
-                @foreach ($tema->debates as $debate)
-                    <div class="debate-item">
-                        <div class="debate-titulo">
-                            <h3>{{ $debate->titulo }}</h3>
+        <div class="debates-container" data-label="Debate">
+            <div class="debate-item">
+                <div class="debate-titulo">
+                    <h3>{{ $debate->titulo }}</h3>
+                </div>
+
+                <div class="argumentos-section">
+                    @if ($debate->argumentos->isEmpty())
+                        <div class="sin-argumentos" data-label="Estado">
+                            <p>No hay argumentos aún.</p>
                         </div>
+                    @else
+                        <div class="argumentos-lista" data-label="Argumentos">
+                            @foreach ($debate->argumentos as $argumento)
+                                <div class="argumento-item 
+                            @if ($argumento->postura == 'A favor') argumento-favor 
+                            @elseif($argumento->postura === 'En contra') argumento-contra 
+                            @elseif($argumento->postura == 'Parcialmente en contra') argumento-parcial-contra
+                            @elseif($argumento->postura == 'Parcialmente a favor') argumento-parcial-favor
+                            @else argumento-neutra @endif"
+                                    id="argumento-{{ $argumento->id }}" data-numero="{{ $argumento->usuario->nombre }}">
 
-                        <div class="argumentos-section">
-                            @if ($debate->argumentos->isEmpty())
-                                <div class="sin-argumentos" data-label="Estado">
-                                    <p>No hay argumentos aún.</p>
+                                    <div class="argumento-contenido contenido-argumento"
+                                        id="argumento-contenido-{{ $argumento->id }}"
+                                        data-contenido="{{ e($argumento->contenido) }}">
+                                    </div>
+
+                                    <div class="argumento-postura" id="postura-{{ $argumento->id }}">
+                                        <strong>{{ $argumento->postura }}</strong>
+                                    </div>
+
                                 </div>
-                            @else
-                                <div class="argumentos-lista" data-label="Argumentos">
-                                    @foreach ($debate->argumentos as $argumento)
-                                        <div class="argumento-item 
-                                    @if ($argumento->postura == 'A favor') argumento-favor 
-                                    @elseif($argumento->postura === 'En contra') argumento-contra 
-                                    @elseif($argumento->postura == 'Parcialmente en contra') argumento-parcial-contra
-                                    @elseif($argumento->postura == 'Parcialmente a favor') argumento-parcial-favor
-                                    @else argumento-neutra @endif"
-                                            id="argumento-{{ $argumento->id }}"
-                                            data-numero="{{ $argumento->usuario->nombre }}">
-
-                                            <div class="argumento-contenido contenido-argumento"
-                                                id="argumento-contenido-{{ $argumento->id }}"
-                                                data-contenido="{{ e($argumento->contenido) }}">
-                                            </div>
-
-                                            <div class="argumento-postura" id="postura-{{ $argumento->id }}">
-                                                <strong>{{ $argumento->postura }}</strong>
-                                            </div>
-
-                                        </div>
-                                    @endforeach
-                                </div>
-                            @endif
+                            @endforeach
                         </div>
-                    </div>
-                @endforeach
-            @endif
+                    @endif
+                </div>
+            </div>
         </div>
     </div>
 
     <button onclick="window.history.back()" class="atras-tema">Volver</button>
 @endsection
 
-
 @section('scripts')
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            // Procesar cada debate y sus argumentos
-            @foreach ($tema->debates as $debate)
-                @foreach ($debate->argumentos as $argumento)
-                    mostrarEstrellas({{ $argumento->id }}, {{ auth()->id() ?? 'null' }});
-                @endforeach
+            @foreach ($debate->argumentos as $argumento)
+                mostrarEstrellas({{ $argumento->id }}, {{ auth()->id() ?? 'null' }});
             @endforeach
 
-            // Procesar contenido con Markdown si es necesario
             document.querySelectorAll('.contenido-argumento').forEach(el => {
                 const rawContent = el.dataset.contenido;
                 el.innerHTML = rawContent ? marked.parse(rawContent) : "<em>Sin contenido</em>";
