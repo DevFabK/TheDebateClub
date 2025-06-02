@@ -442,7 +442,7 @@
                 </table>
             </div>
         </div>
-
+        <button id="btnAtras" class="atras-tema">Volver</button>
         <div id="modal-eliminar" class="modal" style="display:none;">
             <div class="modal-content">
                 <p id="mensaje-eliminar"></p>
@@ -457,6 +457,26 @@
     @section('scripts')
         <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
         <script>
+            document.getElementById('btnAtras').addEventListener('click', function() {
+                let historyList = JSON.parse(sessionStorage.getItem('customHistory')) || [];
+
+                historyList.pop();
+
+                let lastRoute = '/home';
+                while (historyList.length > 0) {
+                    let candidate = historyList.pop();
+                    if (candidate !== '/perfil') {
+                        lastRoute = candidate;
+                        break;
+                    }
+                }
+
+                // Guardar el historial actualizado
+                sessionStorage.setItem('customHistory', JSON.stringify(historyList));
+
+                // Redirigir
+                window.location.href = lastRoute;
+            });
             // Control de pestañas
             const tabs = document.querySelectorAll('.tab-button');
             const contents = document.querySelectorAll('.admin-tab-content');

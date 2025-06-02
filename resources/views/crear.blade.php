@@ -118,6 +118,25 @@
     </div>
 
     <script>
+        document.getElementById('volver').addEventListener('click', function() {
+            let historyList = JSON.parse(sessionStorage.getItem('customHistory')) || [];
+
+            historyList.pop();
+
+            let lastRoute = '/home';
+            while (historyList.length > 0) {
+                let candidate = historyList.pop();
+                if (candidate !== '/perfil') { 
+                    lastRoute = candidate;
+                    break;
+                }
+            }
+
+            sessionStorage.setItem('customHistory', JSON.stringify(historyList));
+
+            window.location.href = lastRoute;
+        });
+
         const debateWrapper = document.getElementById("debate-wrapper");
         const seleccion = document.getElementById("eleccion");
         const argumentoWrapper = document.getElementById("argumento-wrapper");

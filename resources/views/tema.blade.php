@@ -62,13 +62,34 @@
         </div>
     </div>
 
-    <button onclick="window.history.back()" class="atras-tema">Volver</button>
+    <button id="btnAtrasTema" class="atras-tema">Volver</button>
 @endsection
 
 
 @section('scripts')
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script>
+        document.getElementById('btnAtrasTema').addEventListener('click', function() {
+            let historyList = JSON.parse(sessionStorage.getItem('customHistory')) || [];
+
+            historyList.pop();
+
+            let lastRoute = '/home';
+            while (historyList.length > 0) {
+                let candidate = historyList.pop();
+                if (candidate !== '/perfil') { 
+                    lastRoute = candidate;
+                    break;
+                }
+            }
+
+            // Guardar el historial actualizado
+            sessionStorage.setItem('customHistory', JSON.stringify(historyList));
+
+            // Redirigir
+            window.location.href = lastRoute;
+        });
+
         document.addEventListener("DOMContentLoaded", () => {
             // Procesar cada debate y sus argumentos
             @foreach ($tema->debates as $debate)

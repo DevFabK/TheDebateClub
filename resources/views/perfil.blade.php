@@ -84,15 +84,28 @@
         </div>
     </div>
     <script>
-        const btnVolver = document.getElementById('btnVolver');
+        document.getElementById('btnVolver').addEventListener('click', function(e) {
+            e.preventDefault();
 
-        if (document.referrer) {
-            let url = new URL(document.referrer);
-            url.searchParams.set('_reload', Date.now());
-            btnVolver.href = url.toString();
-        } else {
-            btnVolver.href = '/';
-        }
+            let historyList = JSON.parse(sessionStorage.getItem('customHistory')) || [];
+
+            historyList.pop();
+
+            let lastRoute = '/home';
+            while (historyList.length > 0) {
+                let candidate = historyList.pop();
+                if (candidate !== '/perfil') {
+                    lastRoute = candidate;
+                    break;
+                }
+            }
+
+            // Guardar el historial actualizado
+            sessionStorage.setItem('customHistory', JSON.stringify(historyList));
+
+            // Redirigir
+            window.location.href = lastRoute;
+        });
 
         document.addEventListener('DOMContentLoaded', function() {
             const botonEditar = document.querySelector('.boton-editar');

@@ -34,3 +34,15 @@
 </body>
 
 </html>
+<script>
+    (function() {
+        let historyList = JSON.parse(sessionStorage.getItem('customHistory')) || [];
+        const current = window.location.pathname + window.location.search;
+
+        if (historyList[historyList.length - 1] !== current) {
+            historyList.push(current);
+        }
+
+        sessionStorage.setItem('customHistory', JSON.stringify(historyList));
+    })();
+</script>
