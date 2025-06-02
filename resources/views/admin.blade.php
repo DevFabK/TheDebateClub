@@ -395,11 +395,27 @@
                                     <td>
                                         <span
                                             class="texto-debate">{{ $argumento->debate->titulo ?? 'Desconocido' }}</span>
+                                        <select name="debate_id" style="display:none; width: 90%;">
+                                            @foreach ($debates as $debate)
+                                                <option value="{{ $debate->id }}"
+                                                    @if ($argumento->debate_id == $debate->id) selected @endif>
+                                                    {{ $debate->titulo }}
+                                                </option>
+                                            @endforeach
+                                        </select>
                                     </td>
 
                                     <td>
                                         <span
                                             class="texto-usuario">{{ $argumento->usuario->nombre ?? 'Desconocido' }}</span>
+                                        <select name="usuario_id" style="display:none; width: 90%;">
+                                            @foreach ($usuarios as $usuario)
+                                                <option value="{{ $usuario->id }}"
+                                                    @if ($argumento->usuario_id == $usuario->id) selected @endif>
+                                                    {{ $usuario->nombre }}
+                                                </option>
+                                            @endforeach
+                                        </select>
                                     </td>
 
                                     <td>
