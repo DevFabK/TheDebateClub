@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-    <!-- Agregar token CSRF para las peticiones AJAX -->
+    <!-- Token CSRF para peticiones AJAX o formularios -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <div class="contenido-tema">
@@ -34,23 +34,30 @@
                                 <div class="argumentos-lista" data-label="Argumentos">
                                     @foreach ($debate->argumentos as $argumento)
                                         <div class="argumento-item 
-                                    @if ($argumento->postura == 'A favor') argumento-favor 
-                                    @elseif($argumento->postura === 'En contra') argumento-contra 
-                                    @elseif($argumento->postura == 'Parcialmente en contra') argumento-parcial-contra
-                                    @elseif($argumento->postura == 'Parcialmente a favor') argumento-parcial-favor
-                                    @else argumento-neutra @endif"
+                                            @if ($argumento->postura == 'A favor') argumento-favor 
+                                            @elseif($argumento->postura === 'En contra') argumento-contra 
+                                            @elseif($argumento->postura == 'Parcialmente en contra') argumento-parcial-contra
+                                            @elseif($argumento->postura == 'Parcialmente a favor') argumento-parcial-favor
+                                            @else argumento-neutra @endif"
                                             id="argumento-{{ $argumento->id }}"
-                                            data-numero="{{ $argumento->usuario->nombre }}">
+                                            data-numero="{{ $argumento->usuario->nombre ?? 'Anónimo' }}">
 
                                             <div class="argumento-contenido contenido-argumento"
                                                 id="argumento-contenido-{{ $argumento->id }}"
                                                 data-contenido="{{ e($argumento->contenido) }}">
+                                                {!! nl2br(e($argumento->contenido)) !!}
                                             </div>
 
                                             <div class="argumento-postura" id="postura-{{ $argumento->id }}">
                                                 <strong>{{ $argumento->postura }}</strong>
                                             </div>
 
+                                            @if (auth()->check() && auth()->user()->rol->nombre === 'Moderador')
+                                                <button class="btn-borrar-argumento" data-id="{{ $argumento->id }}"
+                                                    data-url="{{ route('borrarArgumento', $argumento->id) }}">
+                                                    Borrar
+                                                </button>
+                                            @endif
                                         </div>
                                     @endforeach
                                 </div>
@@ -62,13 +69,53 @@
         </div>
     </div>
 
-    <button id="btnAtrasTema" class="atras-tema">Volver</button>
+    <button id="btnAtrasTema" class="atras-tema" onclick="history.back()">Volver</button>
+    <div id="modal-eliminar" class="modal" style="display:none;">
+        <div class="modal-content">
+            <p id="mensaje-eliminar">¿Estás seguro de que quieres eliminar este argumento?</p>
+            <div class="modal-buttons">
+                <form id="form-eliminar" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn-eliminar">Eliminar</button>
+                </form>
+                <button id="btn-cancelar-eliminar" class="btn-cancelar">Cancelar</button>
+            </div>
+        </div>
+    </div>
 @endsection
 
 
 @section('scripts')
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const botonesBorrar = document.querySelectorAll('.btn-borrar-argumento');
+            const modal = document.getElementById('modal-eliminar');
+            const btnCancelar = document.getElementById('btn-cancelar-eliminar');
+            const formEliminar = document.getElementById('form-eliminar');
+
+            botonesBorrar.forEach(boton => {
+                boton.addEventListener('click', () => {
+                    const url = boton.getAttribute('data-url');
+                    formEliminar.setAttribute('action', url);
+                    modal.style.display = 'flex';
+                });
+            });
+
+            btnCancelar.addEventListener('click', () => {
+                modal.style.display = 'none';
+                formEliminar.setAttribute('action', '#');
+            });
+
+            // Cerrar el modal si se hace clic fuera del contenido
+            window.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                    formEliminar.setAttribute('action', '#');
+                }
+            });
+        });
         document.getElementById('btnAtrasTema').addEventListener('click', function() {
             let historyList = JSON.parse(sessionStorage.getItem('customHistory')) || [];
 
@@ -77,7 +124,7 @@
             let lastRoute = '/home';
             while (historyList.length > 0) {
                 let candidate = historyList.pop();
-                if (candidate !== '/perfil') { 
+                if (candidate !== '/perfil') {
                     lastRoute = candidate;
                     break;
                 }

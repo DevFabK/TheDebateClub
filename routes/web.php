@@ -46,6 +46,9 @@ Route::post('/buscar-temas', [BuscadorTemasController::class, 'buscar']);
 // Ruta para redirigir al tema
 Route::get('/tema/{id}', [BuscadorTemasController::class, 'irAlTema'])->name('tema');
 
+// Ruta para borrar un argumento (moderadores)
+Route::delete('/tema/argumento/{id}', [TemaController::class, 'borrarArgumento'])->name('borrarArgumento');
+
 // Publicar
 Route::get('/crear', [PublicarController::class, 'mostrarPanelCrear'])->middleware('auth')->name('crear');
 Route::post('/crear', [PublicarController::class, 'post'])->middleware('auth')->name('crear.post');

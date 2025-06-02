@@ -281,3 +281,19 @@
         padding: 4px 8px;
     }
 }
+
+.btn-borrar-argumento {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 3px;
+    font-size: 0.9em;
+    cursor: pointer;
+    color: white;
+    margin-top: 10px;
+    transition: background-color 0.2s ease;
+    background-color: #dc3545;
+}
+
+.btn-borrar-argumento:hover {
+    background-color: #bd2130;
+}
