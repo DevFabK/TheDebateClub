@@ -462,43 +462,62 @@
             function activarEdicion(button) {
                 const fila = button.closest('tr');
 
-                // Ocultar contenido parseado
-                fila.querySelectorAll('.contenido-argumento-admin').forEach(div => div.style.display = 'none');
+                // Guardar los valores originales en data-attributes para restaurar después
+                fila.querySelectorAll('input, select, textarea').forEach(input => {
+                    input.dataset.originalValue = input.value;
+                });
 
-                // Mostrar input para editar contenido
-                fila.querySelectorAll('input[name="contenido"]').forEach(input => input.style.display = 'inline-block');
+                // Ocultar elementos de texto (span, div, etc) excepto botones
+                fila.querySelectorAll('span, div').forEach(el => {
+                    // No ocultar si es botón o contiene botones
+                    if (!el.classList.contains('btn-edit') && !el.classList.contains('btn-save') && !el.classList
+                        .contains('btn-cancel')) {
+                        el.style.display = 'none';
+                    }
+                });
 
-                // Ocultar texto postura y mostrar select
-                fila.querySelectorAll('.texto-postura').forEach(span => span.style.display = 'none');
-                fila.querySelectorAll('select[name="postura"]').forEach(select => select.style.display = 'inline-block');
+                // Mostrar inputs, selects, textareas para editar
+                fila.querySelectorAll('input, select, textarea').forEach(input => {
+                    input.style.display = 'inline-block';
+                });
 
                 // Mostrar/ocultar botones
                 button.style.display = 'none'; // botón editar
-                fila.querySelector('.btn-save').style.display = 'inline-block'; // botón guardar
-                fila.querySelector('.btn-cancel').style.display = 'inline-block'; // botón cancelar
+                const btnSave = fila.querySelector('.btn-save');
+                const btnCancel = fila.querySelector('.btn-cancel');
+                if (btnSave) btnSave.style.display = 'inline-block';
+                if (btnCancel) btnCancel.style.display = 'inline-block';
             }
 
             function cancelarEdicion(button) {
                 const fila = button.closest('tr');
 
-                // Mostrar contenido parseado
-                fila.querySelectorAll('.contenido-argumento-admin').forEach(div => div.style.display = 'block');
+                // Restaurar los valores originales
+                fila.querySelectorAll('input, select, textarea').forEach(input => {
+                    if (input.dataset.originalValue !== undefined) {
+                        input.value = input.dataset.originalValue;
+                    }
+                });
 
-                // Ocultar input para editar contenido
-                fila.querySelectorAll('input[name="contenido"]').forEach(input => input.style.display = 'none');
+                // Mostrar elementos de texto otra vez
+                fila.querySelectorAll('span, div').forEach(el => {
+                    if (!el.classList.contains('btn-edit') && !el.classList.contains('btn-save') && !el.classList
+                        .contains('btn-cancel')) {
+                        el.style.display = '';
+                    }
+                });
 
-                // Mostrar texto postura y ocultar select
-                fila.querySelectorAll('.texto-postura').forEach(span => span.style.display = 'inline');
-                fila.querySelectorAll('select[name="postura"]').forEach(select => select.style.display = 'none');
+                // Ocultar inputs, selects, textareas
+                fila.querySelectorAll('input, select, textarea').forEach(input => {
+                    input.style.display = 'none';
+                });
 
                 // Mostrar/ocultar botones
-                fila.querySelector('.btn-edit').style.display = 'inline-block'; // botón editar
-                fila.querySelector('.btn-save').style.display = 'none'; // botón guardar
+                const btnEdit = fila.querySelector('.btn-edit');
+                if (btnEdit) btnEdit.style.display = 'inline-block';
+                const btnSave = fila.querySelector('.btn-save');
+                if (btnSave) btnSave.style.display = 'none';
                 button.style.display = 'none'; // botón cancelar
-
-                // Opcional: Resetear valor del input a contenido original si quieres
-                const contenidoOriginal = fila.querySelector('.contenido-argumento-admin').dataset.contenido;
-                fila.querySelector('input[name="contenido"]').value = contenidoOriginal;
             }
 
             document.addEventListener('DOMContentLoaded', () => {

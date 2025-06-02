@@ -65,7 +65,6 @@ Route::put('/perfil/editar', [ProfileController::class, 'update'])->name('perfil
 
 Route::get('/debate/{id}', [DebateController::class, 'mostrar'])->name('debate');
 
-// PANEL DE ADMIN
 Route::get('/admin', [AdminController::class, 'panel'])->name('panel');
 
 // USUARIOS (panel de administración)
