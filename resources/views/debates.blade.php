@@ -45,6 +45,13 @@
                                         <strong>{{ $argumento->postura }}</strong>
                                     </div>
 
+                                    @if (auth()->check() && auth()->user()->rol->nombre === 'Moderador')
+                                        <button class="btn-borrar-argumento" data-id="{{ $argumento->id }}"
+                                            data-url="{{ route('borrarArgumento', $argumento->id) }}">
+                                            Borrar
+                                        </button>
+                                    @endif
+
                                 </div>
                             @endforeach
                         </div>
@@ -55,6 +62,19 @@
     </div>
 
     <button id="btnAtrasTema" class="atras-tema">Volver</button>
+    <div id="modal-eliminar" class="modal" style="display:none;">
+        <div class="modal-content">
+            <p id="mensaje-eliminar"></p>
+            <div class="modal-buttons">
+                <form id="form-eliminar" method="POST" action="#">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" id="btn-confirmar-eliminar" class="btn-eliminar">Eliminar</button>
+                </form>
+                <button id="btn-cancelar-eliminar" class="btn-cancelar">Cancelar</button>
+            </div>
+        </div>
+    </div>
 
 @endsection
 
@@ -62,6 +82,39 @@
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
     <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const botonesBorrar = document.querySelectorAll('.btn-borrar-argumento');
+            const modal = document.getElementById('modal-eliminar');
+            const btnCancelar = document.getElementById('btn-cancelar-eliminar');
+            const formEliminar = document.getElementById('form-eliminar');
+            const mensajeEliminar = document.getElementById('mensaje-eliminar');
+
+            botonesBorrar.forEach(boton => {
+                boton.addEventListener('click', () => {
+                    const url = boton.getAttribute('data-url');
+                    const contenido = boton.getAttribute('data-contenido');
+
+                    mensajeEliminar.textContent =
+                        `¿Quieres eliminar este argumento?`;
+                    formEliminar.setAttribute('action', url);
+                    modal.style.display = 'flex';
+                });
+            });
+
+            btnCancelar.addEventListener('click', () => {
+                modal.style.display = 'none';
+                formEliminar.setAttribute('action', '#');
+                mensajeEliminar.textContent = '';
+            });
+
+            window.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                    formEliminar.setAttribute('action', '#');
+                    mensajeEliminar.textContent = '';
+                }
+            });
+        });
         document.getElementById('btnAtrasTema').addEventListener('click', function() {
             let historyList = JSON.parse(sessionStorage.getItem('customHistory')) || [];
 
@@ -84,7 +137,7 @@
             // Redirigir
             window.location.href = lastRoute;
         });
-        
+
         document.addEventListener("DOMContentLoaded", () => {
             @foreach ($debate->argumentos as $argumento)
                 mostrarEstrellas({{ $argumento->id }}, {{ auth()->id() ?? 'null' }});

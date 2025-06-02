@@ -116,6 +116,7 @@
                 }
             });
         });
+        
         document.getElementById('btnAtrasTema').addEventListener('click', function() {
             let historyList = JSON.parse(sessionStorage.getItem('customHistory')) || [];
 
