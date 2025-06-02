@@ -195,7 +195,69 @@
     box-sizing: border-box;
 }
 
-.contenido-argumento-admin{
+.contenido-argumento-admin {
     text-align: justify;
-    padding:  0px 15px;
+    padding: 0px 15px;
+}
+
+.tabla-scroll {
+    max-height: 505px;
+    overflow-y: auto;
+}
+
+.tabla-scroll table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tabla-scroll th,
+.tabla-scroll td {
+    border-bottom: 1px solid #ddd;
+}
+
+.filtros-usuarios,
+.filtros-temas,
+.filtros-debates,
+.filtros-argumentos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 15px;
+    align-items: center;
+}
+
+.input-filtro {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    min-width: 150px;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: #fff;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: #0069d9;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: #fff;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
 }
