@@ -68,24 +68,24 @@ Route::put('/perfil/editar', [ProfileController::class, 'update'])->name('perfil
 
 Route::get('/debate/{id}', [DebateController::class, 'mostrar'])->name('debate');
 
-Route::get('/admin', [AdminController::class, 'panel'])->name('panel');
+Route::get('/admin', [AdminController::class, 'panel'])->middleware('auth')->name('panel');
 
 // USUARIOS (panel de administración)
-Route::get('/admin/usuarios/{user}/editar', [AdminController::class, 'editarUsuario'])->name('admin.usuarios.editar');
-Route::put('/admin/usuarios/{user}', [AdminController::class, 'actualizarUsuario'])->name('admin.usuarios.actualizar');
-Route::delete('/admin/usuarios/{user}', [AdminController::class, 'eliminarUsuario'])->name('admin.usuarios.eliminar');
+Route::get('/admin/usuarios/{user}/editar', [AdminController::class, 'editarUsuario'])->middleware('auth')->name('admin.usuarios.editar');
+Route::put('/admin/usuarios/{user}', [AdminController::class, 'actualizarUsuario'])->middleware('auth')->name('admin.usuarios.actualizar');
+Route::delete('/admin/usuarios/{user}', [AdminController::class, 'eliminarUsuario'])->middleware('auth')->name('admin.usuarios.eliminar');
 
 // TEMAS (panel de administración)
-Route::get('/admin/temas', [AdminController::class, 'temas'])->name('admin.temas.index');
-Route::put('/admin/temas/{tema}', [AdminController::class, 'actualizarTema'])->name('admin.temas.actualizar');
-Route::delete('/admin/temas/{tema}', [AdminController::class, 'eliminarTema'])->name('admin.temas.eliminar');
+Route::get('/admin/temas', [AdminController::class, 'temas'])->middleware('auth')->name('admin.temas.index');
+Route::put('/admin/temas/{tema}', [AdminController::class, 'actualizarTema'])->middleware('auth')->name('admin.temas.actualizar');
+Route::delete('/admin/temas/{tema}', [AdminController::class, 'eliminarTema'])->middleware('auth')->name('admin.temas.eliminar');
 
 // DEBATES (panel de administración)
-Route::get('/admin/debates', [AdminController::class, 'debates'])->name('admin.debates.index');
-Route::put('/admin/debates/{debate}', [AdminController::class, 'actualizarDebate'])->name('admin.debates.actualizar');
-Route::delete('/admin/debates/{debate}', [AdminController::class, 'eliminarDebate'])->name('admin.debates.eliminar');
+Route::get('/admin/debates', [AdminController::class, 'debates'])->middleware('auth')->name('admin.debates.index');
+Route::put('/admin/debates/{debate}', [AdminController::class, 'actualizarDebate'])->middleware('auth')->name('admin.debates.actualizar');
+Route::delete('/admin/debates/{debate}', [AdminController::class, 'eliminarDebate'])->middleware('auth')->name('admin.debates.eliminar');
 
 // ARGUMENTOS (panel de administración)
-Route::get('/admin/argumentos', [AdminController::class, 'argumentos'])->name('admin.argumentos.index');
-Route::put('/admin/argumentos/{argumento}', [AdminController::class, 'actualizarArgumento'])->name('admin.argumentos.actualizar');
-Route::delete('/admin/argumentos/{argumento}', [AdminController::class, 'eliminarArgumento'])->name('admin.argumentos.eliminar');
+Route::get('/admin/argumentos', [AdminController::class, 'argumentos'])->middleware('auth')->name('admin.argumentos.index');
+Route::put('/admin/argumentos/{argumento}', [AdminController::class, 'actualizarArgumento'])->middleware('auth')->name('admin.argumentos.actualizar');
+Route::delete('/admin/argumentos/{argumento}', [AdminController::class, 'eliminarArgumento'])->middleware('auth')->name('admin.argumentos.eliminar');
