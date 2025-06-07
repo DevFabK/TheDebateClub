@@ -8,6 +8,7 @@ use App\Models\Tema;
 use App\Models\Debate;
 use App\Models\Argumento;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
@@ -146,7 +147,19 @@ class AdminController extends Controller
 
     public function eliminarArgumento(Argumento $argumento)
     {
+        $usuario = $argumento->usuario; 
+
         $argumento->delete();
+
+        $puntosTotales = DB::table('puntuaciones')
+            ->join('argumentos', 'puntuaciones.argumento_id', '=', 'argumentos.id')
+            ->where('argumentos.usuario_id', $usuario->id)
+            ->sum('puntuaciones.puntuacion');
+
+        // Actualizamos el campo puntos_de_debate del usuario
+        $usuario->puntos_de_debate = $puntosTotales;
+        $usuario->save();
+
         return redirect()->to(route('panel') . '#argumentos')->with('success', 'Argumento eliminado correctamente.');
     }
 }
