@@ -48,15 +48,15 @@
                     @endforelse
                 </ul>
             </div>
-            <div class="mejor-argumento" data-label="Tu mejor argumento">
-                {{ $mejorArgumento->contenido ?? 'Aún no has escrito ningún argumento' }}
+            <div class="mejor-argumento" data-label="Tu mejor argumento"
+                data-markdown="{{ $mejorArgumento->contenido ?? 'Aún no has escrito ningún argumento' }}">
             </div>
         </div>
         <a id="btnVolver" class="atras-perfil" href="#">Volver</a>
         <div id="modalEditar" class="modal">
             <div class="modal-contenido">
                 <span id="cerrarModal" class="cerrar" onclick="closeModal()">&times;</span>
-                <h2>Editar perfil</h2>
+                <h2 class="edicion">Editar perfil</h2>
                 <form id="formEditar" method="POST" action="{{ route('perfil.update') }}" enctype="multipart/form-data">
 
                     @csrf
@@ -126,6 +126,14 @@
                 }
             });
         });
+        document.addEventListener("DOMContentLoaded", function() {
+            const div = document.querySelector('.mejor-argumento');
+            if (div && div.dataset.markdown) {
+                const markdownText = div.dataset.markdown;
+                div.innerHTML = marked.parse(markdownText);
+            }
+        });
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
 @endsection
