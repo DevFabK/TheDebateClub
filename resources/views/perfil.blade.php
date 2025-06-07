@@ -107,6 +107,7 @@
             window.location.href = lastRoute;
         });
 
+        // Funcion para editar el perfil
         document.addEventListener('DOMContentLoaded', function() {
             const botonEditar = document.querySelector('.boton-editar');
             const modal = document.getElementById('modalEditar');
@@ -126,6 +127,8 @@
                 }
             });
         });
+        
+        // Parsear el mejor argumento
         document.addEventListener("DOMContentLoaded", function() {
             const div = document.querySelector('.mejor-argumento');
             if (div && div.dataset.markdown) {

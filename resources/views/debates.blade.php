@@ -82,6 +82,7 @@
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
     <script>
+        // Inicializar la lógica del modal de confirmación de borrado
         document.addEventListener('DOMContentLoaded', () => {
             const botonesBorrar = document.querySelectorAll('.btn-borrar-argumento');
             const modal = document.getElementById('modal-eliminar');
@@ -94,19 +95,24 @@
                     const url = boton.getAttribute('data-url');
                     const contenido = boton.getAttribute('data-contenido');
 
+                    // Actualiza el mensaje del modal
                     mensajeEliminar.textContent =
                         `¿Quieres eliminar este argumento?`;
                     formEliminar.setAttribute('action', url);
+
+                    // Para mostrar el modal
                     modal.style.display = 'flex';
                 });
             });
 
+            // Cancelar el borrado y limpiar valores
             btnCancelar.addEventListener('click', () => {
                 modal.style.display = 'none';
                 formEliminar.setAttribute('action', '#');
                 mensajeEliminar.textContent = '';
             });
 
+            // Cerrar el modal si se hace click fuera
             window.addEventListener('click', (e) => {
                 if (e.target === modal) {
                     modal.style.display = 'none';
@@ -115,6 +121,7 @@
                 }
             });
         });
+
         document.getElementById('btnAtrasTema').addEventListener('click', function() {
             let historyList = JSON.parse(sessionStorage.getItem('customHistory')) || [];
 
@@ -139,16 +146,19 @@
         });
 
         document.addEventListener("DOMContentLoaded", () => {
+            // Para cada argumento llama a la función que muestra las estrellas con la valoración del usuario actual
             @foreach ($debate->argumentos as $argumento)
                 mostrarEstrellas({{ $argumento->id }}, {{ auth()->id() ?? 'null' }});
             @endforeach
 
+            // Obtenemos todos los elementos con la clase 'contenido-argumento' y se parsea
             document.querySelectorAll('.contenido-argumento').forEach(el => {
                 const rawContent = el.dataset.contenido;
                 el.innerHTML = rawContent ? marked.parse(rawContent) : "<em>Sin contenido</em>";
             });
         });
 
+        // Muestra la valoración por estrellas de un argumento para un usuario autenticado
         function mostrarEstrellas(argumentoId, usuarioId) {
             // Verificar que el usuario esté autenticado
             if (!usuarioId) {
@@ -156,14 +166,17 @@
                 return;
             }
 
+            // Solicitamos la puntuación del usuario para el argumento dado
             fetch(`/estrellas?usuario_id=${usuarioId}&argumento_id=${argumentoId}`)
                 .then(response => {
                     if (!response.ok) throw new Error("Respuesta no válida del servidor");
                     return response.json();
                 })
                 .then(data => {
+                    // Obtiene el valor de la puntuación o 0 si no existe
                     let valor = data?.puntuacion?.valor ?? 0;
 
+                    // Busca el contenedor donde insertar las estrellas
                     const contenedor = document.querySelector(`#argumento-contenido-${argumentoId}`);
                     if (!contenedor) {
                         console.error(`No se encontró contenedor para argumento ${argumentoId}`);
@@ -177,6 +190,7 @@
                         <input type="hidden" class="rating-value" value="${valor}">
                     `;
 
+                    // Se inserta el html con las estrellas
                     contenedor.insertAdjacentHTML("beforeend", html);
 
                     const starContainer = contenedor.querySelector('.star-rating');
@@ -187,6 +201,7 @@
                 });
         }
 
+        // Sistema de valoración por estrellas en un contenedor y guardando la puntuación seleccionada
         function setupStarRating(container, argumentoId) {
             const stars = container.querySelectorAll('.star');
             const ratingInput = container.nextElementSibling;

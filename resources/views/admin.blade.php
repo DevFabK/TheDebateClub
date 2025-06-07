@@ -495,6 +495,7 @@
                 // Redirigir
                 window.location.href = lastRoute;
             });
+
             // Control de pestañas
             const tabs = document.querySelectorAll('.tab-button');
             const contents = document.querySelectorAll('.admin-tab-content');
@@ -623,18 +624,14 @@
                     }
                 });
             });
+
             document.addEventListener('DOMContentLoaded', () => {
                 document.querySelectorAll('.contenido-argumento-admin').forEach(div => {
                     const markdown = div.dataset.contenido;
                     div.innerHTML = marked.parse(markdown);
                 });
             });
-            document.addEventListener('DOMContentLoaded', () => {
-                document.querySelectorAll('.contenido-argumento-admin').forEach(div => {
-                    const markdown = div.dataset.contenido;
-                    div.innerHTML = marked.parse(markdown);
-                });
-            });
+
             document.addEventListener('DOMContentLoaded', function() {
                 // --- FILTROS USUARIOS ---
                 const tablaUsuarios = document.getElementById('tabla-usuarios');
@@ -687,6 +684,7 @@
                     aplicarFiltrosUsuarios();
                 }
             });
+            
             document.addEventListener('DOMContentLoaded', () => {
                 const tablaTemas = document.querySelector('#temas table');
                 if (!tablaTemas) return;

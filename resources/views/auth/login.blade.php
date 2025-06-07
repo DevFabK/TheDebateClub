@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TDC - Iniciar sesión</title>
-<link rel="icon" href="{{ asset('favicon.svg') }}" type="image/svg+xml">
+    <link rel="icon" href="{{ asset('favicon.svg') }}" type="image/svg+xml">
     <!-- Estilos específicos para login -->
     <link href="{{ asset('css/fondo-formularios.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/estilos-formularios.css') }}" rel="stylesheet" />

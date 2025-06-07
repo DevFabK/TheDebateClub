@@ -181,6 +181,7 @@
             });
         });
 
+        // Mostrar o ocultar los inputs dependiendo de lo seleccionado
         function actualizarVisibilidadInputs() {
             if (seleccion.value === "debate") {
                 debateWrapper.style.display = "flex";

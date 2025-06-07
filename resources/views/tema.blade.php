@@ -89,6 +89,7 @@
 @section('scripts')
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script>
+        // Funcion para borrar
         document.addEventListener('DOMContentLoaded', () => {
             const botonesBorrar = document.querySelectorAll('.btn-borrar-argumento');
             const modal = document.getElementById('modal-eliminar');
@@ -116,7 +117,7 @@
                 }
             });
         });
-        
+
         document.getElementById('btnAtrasTema').addEventListener('click', function() {
             let historyList = JSON.parse(sessionStorage.getItem('customHistory')) || [];
 
@@ -191,11 +192,14 @@
                 });
         }
 
+        // Sistema de valoración por estrellas en un contenedor y guardando la puntuación seleccionada
         function setupStarRating(container, argumentoId) {
             const stars = container.querySelectorAll('.star');
             const ratingInput = container.nextElementSibling;
 
             stars.forEach(star => {
+
+                // Al hacer click en una estrella, se actualiza la puntuación y se guarda
                 star.addEventListener('click', () => {
                     const value = parseInt(star.dataset.value);
                     ratingInput.value = value;
@@ -203,11 +207,13 @@
                     guardarPuntuacion(argumentoId, value);
                 });
 
+                // Al pasar el ratón por encima, se muestran las estrellas resaltadas hasta esa posición
                 star.addEventListener('mouseover', () => {
                     const value = parseInt(star.dataset.value);
                     updateStars(stars, value);
                 });
 
+                // Al quitar el ratón, se vuelve a mostrar la puntuación guardada actualmente
                 star.addEventListener('mouseout', () => {
                     const value = parseInt(ratingInput.value);
                     updateStars(stars, value);
@@ -218,6 +224,7 @@
             updateStars(stars, parseInt(ratingInput.value));
         }
 
+        // Actualiza las estrellas según el valor dado, mostrando llenas o vacías 
         function updateStars(stars, value) {
             stars.forEach((star, index) => {
                 star.textContent = (index + 1 <= value) ? '★' : '☆';
@@ -225,14 +232,19 @@
             });
         }
 
+        // Envía la puntuación seleccionada mediante una petición POST 
         function guardarPuntuacion(argumentoId, value) {
+
+            // Se obtiene el token para proteger la peticion
             const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
+            // Si no lo encuentra se muestra el error
             if (!token) {
                 console.error('Token CSRF no encontrado');
                 return;
             }
 
+            // Peticion por POST
             fetch('/estrellas', {
                     method: 'POST',
                     headers: {
@@ -245,12 +257,16 @@
                         puntuacion: value
                     })
                 })
+
+                // Si la respuesta no es correcta, procesa el error y lanza excepción
                 .then(async response => {
                     if (!response.ok) {
                         const errorData = await response.json();
                         console.error("Error detalle:", errorData);
                         throw new Error("Error al guardar puntuación");
                     }
+
+                    // Si todo va bien, devuelve la respuesta JSON
                     return response.json();
                 })
                 .then(data => {
