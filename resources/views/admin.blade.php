@@ -38,6 +38,11 @@
                 <button id="btn-aplicar-filtros-usuarios" class="btn btn-primary">Aplicar filtros</button>
                 <button id="btn-limpiar-filtros-usuarios" class="btn btn-secondary">Limpiar filtros</button>
             </div>
+            @if (session('success'))
+                <div class="alert alert-success" style="color:#e9b50b;">
+                    {{ session('success') }}
+                </div>
+            @endif
             <div class="tabla-scroll">
 
                 <table class="admin-table" id="tabla-usuarios">
@@ -69,8 +74,8 @@
                                     </td>
                                     <td>
                                         <span class="texto-email">{{ $user->email }}</span>
-                                        <input type="email" name="email" value="{{ $user->email }}" class="input-email"
-                                            style="display:none;">
+                                        <input type="email" name="email" value="{{ $user->email }}"
+                                            class="input-email" style="display:none;">
                                     </td>
                                     <td>
                                         <span class="rol-text texto-rol"
@@ -141,6 +146,11 @@
                 <button id="btn-aplicar-filtros-temas" class="btn btn-primary">Aplicar filtros</button>
                 <button id="btn-limpiar-filtros-temas" class="btn btn-secondary">Limpiar filtros</button>
             </div>
+            @if (session('success'))
+                <div class="alert alert-success" style="color:#e9b50b;">
+                    {{ session('success') }}
+                </div>
+            @endif
             <div class="tabla-scroll">
                 <table class="admin-table">
                     <thead>
@@ -157,29 +167,29 @@
                         @foreach ($temas as $tema)
                             <tr>
                                 <td>{{ $tema->id }}</td>
-                                <td>
-                                    <span class="texto-titulo">{{ $tema->titulo }}</span>
-                                    <input type="text" name="titulo" value="{{ $tema->titulo }}"
-                                        style="display:none;">
-                                </td>
-                                <td>
-                                    <span class="texto-descripcion">{{ $tema->descripcion }}</span>
-                                    <input type="text" name="descripcion" value="{{ $tema->descripcion }}"
-                                        style="display:none;">
-                                </td>
-                                <td>{{ $tema->usuario->nombre ?? 'Desconocido' }}</td>
-                                <td>
-                                    <form method="POST" action="{{ route('admin.temas.actualizar', $tema) }}"
-                                        class="editar-form">
-                                        @csrf
-                                        @method('PUT')
+                                <form method="POST" action="{{ route('admin.temas.actualizar', $tema) }}"
+                                    class="editar-form">
+                                    @csrf
+                                    @method('PUT')
+                                    <td>
+                                        <span class="texto-titulo">{{ $tema->titulo }}</span>
+                                        <input type="text" name="titulo" value="{{ $tema->titulo }}"
+                                            style="display:none;">
+                                    </td>
+                                    <td>
+                                        <span class="texto-descripcion">{{ $tema->descripcion }}</span>
+                                        <input type="text" name="descripcion" value="{{ $tema->descripcion }}"
+                                            style="display:none;">
+                                    </td>
+                                    <td>{{ $tema->usuario->nombre ?? 'Desconocido' }}</td>
+                                    <td>
                                         <button type="button" class="btn-edit"
                                             onclick="activarEdicion(this)">Editar</button>
                                         <button type="submit" class="btn-save" style="display:none;">Guardar</button>
                                         <button type="button" class="btn-cancel" style="display:none;"
                                             onclick="cancelarEdicion(this)">Cancelar</button>
-                                    </form>
-                                </td>
+                                    </td>
+                                </form>
                                 <td>
                                     <form method="POST" action="{{ route('admin.temas.eliminar', $tema) }}"
                                         class="form-eliminar">
@@ -221,7 +231,11 @@
                 <button id="btn-aplicar-filtros-debates" class="btn btn-primary">Aplicar filtros</button>
                 <button id="btn-limpiar-filtros-debates" class="btn btn-secondary">Limpiar filtros</button>
             </div>
-
+            @if (session('success'))
+                <div class="alert alert-success" style="color:#e9b50b;">
+                    {{ session('success') }}
+                </div>
+            @endif
             <div class="tabla-scroll">
                 <table class="admin-table">
                     <thead>
@@ -341,7 +355,11 @@
                 <button id="btn-aplicar-filtros-argumentos" class="btn btn-primary">Aplicar filtros</button>
                 <button id="btn-limpiar-filtros-argumentos" class="btn btn-secondary">Limpiar filtros</button>
             </div>
-
+            @if (session('success'))
+                <div class="alert alert-success" style="color:#e9b50b;">
+                    {{ session('success') }}
+                </div>
+            @endif
             <div class="tabla-scroll">
                 <table class="admin-table">
                     <thead>
